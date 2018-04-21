@@ -22,12 +22,12 @@
 				<span th:text="${message}"></span>
 			</h2>
 		</div>
-	    <form action="#" th:action="@{/vsoc/processForm}" th:object="${vsocUI}" method="POST">
+	    <form action="#" th:action="@{/vsoc/processForm}" th:object="${modelAndView}" method="POST">
     	     
 	      <table>
 			     <tr><td>MCU_HEART_BEAT_LED</td>
 		    	   <td>
-		    	   		<input type="radio" ><label>ON</label><input type="radio" /><label>OFF</label>
+		    	   		<input type="radio" th:field="*{vsocUI.heartBeatLedOnAndoff}" value="${vsocUI.heartBeatLedOnAndoff}"><label>ON</label><input type="radio" /><label>OFF</label>
 		    	   </td>
 		    	</tr>
 		    	

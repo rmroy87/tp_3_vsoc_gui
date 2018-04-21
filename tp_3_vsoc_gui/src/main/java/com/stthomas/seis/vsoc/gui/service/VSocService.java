@@ -12,8 +12,5 @@ import com.stthomas.seis.vsoc.gui.model.HeartBeatLed;
 public class VSocService {
 
 	
-	public HeartBeatLed readHeartBeatLed() {
-		HeartBeatLed heartBeatLed = new HeartBeatLed();
-		return heartBeatLed;
-	}
+	//TODO
 } 
