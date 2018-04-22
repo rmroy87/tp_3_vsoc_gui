@@ -1,16 +1,15 @@
 package com.stthomas.seis.vsoc.gui.service;
 
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.stthomas.seis.vsoc.gui.model.HeartBeatLed;
+import com.stthomas.seis.vsoc.gui.model.VSocUI;
 @Service
 public class VSocService {
 
-	
-	//TODO
+	public void sendInputs(VSocUI ui) {
+		//TODO
+		System.out.print(">>>>> Sending message to client...........");
+		System.out.print("MSG = " +ui.toString());
+	}	
 } 
