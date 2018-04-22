@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{app.vsoc.title}"> Title </title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    </head>
+	<body>
+	    <h1 th:text="#{app.user.read.input}">Read Input</h1>
+	      
+	   <table>
+	        <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'MCU_HEART_BEAT_LED: ' + ${vsocUI.mcuHeartBeatLedInput}" />
+	        </tr>
+	        
+	        <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'Fan Pwm: ' + ${vsocUI.fanPwmInput}" />
+	        </tr>
+	        <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'Fan Tac: ' + ${vsocUI.fanTacInput}" />
+	        </tr>
+	        <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'Temp Sensor: ' + ${vsocUI.tempSensorInput}" />
+	        </tr>
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'DPOL 1.0V: ' + ${vsocUI.dpol1_0VInput}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'DPOL 1.8V: ' + ${vsocUI.dpol1_8VInput}" />
+	        </tr>	
+       </table>
+       
+	<a href="#" th:href="@{/vsoc/}" th:text="#{user.send-more-inputs}">Back</a>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>SEIS 635 - University St Thomas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+
+	<div class="container">
+
+		<div class="starter-template">
+			<h1><span th:text="${projectName}"></span></h1>
+			<h2>
+				<span th:text="${message}"></span>
+			</h2>
+		</div>
+	    <form action="#" th:action="@{/vsoc/processForm}" th:object="${vsocUI}" method="POST">
+    	     
+	      <table>
+			     <tr><td>MCU_HEART_BEAT_LED</td>
+		    	   <td>
+		    	   		<input type="radio" ><label>ON</label><input type="radio" /><label>OFF</label>
+		    	   </td>
+		    	</tr>
+		    	
+		    	<tr><td>Fan PWM</td>
+		    	   <td>
+		    	   		<input type="text" /><label>(Read only)</label>
+		    	   </td>
+		    	</tr>
+		    	<tr/>
+		    	<tr/>
+		    	<tr><td>Fan TAC</td>
+		    	   <td>
+		    	   		<input type="text" /> <input type="radio" /><label>Manual Entry</label> <input type="radio" /><label>Configured Response</label>
+		    	   </td>
+		    	</tr>
+		    	
+		    	<tr>
+		    		<td> 	     
+		    			<input type = "submit" name = "action1" value="Action1"/>
+					</td>
+		    	</tr>
+	    	</table>
+		     
+	   </form>
+   	</div>
+	<!-- /.container -->
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

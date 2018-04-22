@@ -1,62 +1,82 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>SEIS 635 - University St Thomas</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{app.title}"> Title </title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    </head>
+	<body>
+	    <h1 th:text="#{app.vsoc.title}">Send Input to the Virtual System (VSOC)</h1>
+	    <form action="#" th:action="@{/vsoc/sendInput}" th:object="${vsocUI}" method="POST">
+		    <table>
 
-<link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+			    	<tr><td th:text="#{user.ui.heartbeat.led}"></td>
+		    		  <td th:each="entryTypes1 : ${mcuHeartBeatLed_Ind}">
+			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
+			    	    </td>
+			    	    <td>
+			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes2}" />OFF
+			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
+			    	    </td>
+			    	</tr>
 
-<link rel="stylesheet" th:href="@{/css/main.css}"
-	href="../../css/main.css" />
-
-</head>
-<body>
-
-
-	<div class="container">
-
-		<div class="starter-template">
-			<h1><span th:text="${projectName}"></span></h1>
-			<h2>
-				<span th:text="${message}"></span>
-			</h2>
-		</div>
-	    <form action="#" th:action="@{/vsoc/processForm}" th:object="${modelAndView}" method="POST">
-    	     
-	      <table>
-			     <tr><td>MCU_HEART_BEAT_LED</td>
-		    	   <td>
-		    	   		<input type="radio" th:field="*{vsocUI.heartBeatLedOnAndoff}" value="${vsocUI.heartBeatLedOnAndoff}"><label>ON</label><input type="radio" /><label>OFF</label>
-		    	   </td>
-		    	</tr>
+			    	<tr><td th:text="#{user.ui.fan_pwm}"/></td>
+			    	    <td>
+			    	       <input type="text" th:field="*{fanPwmInput}" />
+			    	       <label th:if="${#fields.hasErrors('fanPwmInput')}" th:text="#{error.vsocUI.fanPwmInput}" th:class="'error'">Fan PWM Error</label>
+			    	    </td>
+			    	</tr>
+			    	<tr><td th:text="#{user.ui.fan_pwm}"></td>
+			    	      <td>
+			    	       <input type="text" th:field="*{fanTacInput}" />
+			    	       <label th:if="${#fields.hasErrors('fanTacInput')}" th:text="#{error.vsocUI.fanTacInput}" th:class="'error'">Fan TAC Error</label>
+			    	    </td>
+			    	</tr>
+			    	<tr><td th:text="#{user.ui.temp_sensor}"></td>
+			    	      <td>
+			    	       <input type="text" th:field="*{tempSensorInput}" />
+			    	       <label th:if="${#fields.hasErrors('tempSensorInput')}" th:text="#{error.vsocUI.tempSensorInput}" th:class="'error'">Fan TAC Error</label>
+			    	    </td>
+			    	</tr>
+			    	
+			    	<tr>
+			    		<td th:text="#{user.ui.analog_to_digital}"></td>
+			    	</tr>
+			    	<tr><td th:text="#{user.ui.dpol1.0}"></td>
+			    		<td>
+			    		   <input type="text" th:field="*{dpol1_0VInput}" />
+			    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+			    	    </td>
+			    	      <td th:each="entryTypes1 : ${dpol1_0_EntryTypes}">
+				    	       <input type="radio" th:field="*{dpol1_0VInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+				    	    <td>
+				    	       <input type="radio" th:field="*{dpol1_0VInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+			    	</tr>
+			    	<tr><td th:text="#{user.ui.dpol1.8}"></td>
+			    		<td>
+			    		   <input type="text" th:field="*{dpol1_8VInput}" />
+			    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+			    	    </td>
+				    	      <td th:each="entryTypes2 : ${dpol1_8_EntryTypes}">
+				    	       <input type="radio" th:field="*{dpol1_8VInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{dpol1_8VInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+			    	</tr>
 		    	
-		    	<tr><td>Fan PWM</td>
-		    	   <td>
-		    	   		<input type="text" /><label>(Read only)</label>
-		    	   </td>
-		    	</tr>
-		    	<tr/>
-		    	<tr/>
-		    	<tr><td>Fan TAC</td>
-		    	   <td>
-		    	   		<input type="text" /> <input type="radio" /><label>Manual Entry</label> <input type="radio" /><label>Configured Response</label>
-		    	   </td>
-		    	</tr>
-		    	
-		    	<tr>
-		    		<td> 	     
-		    			<input type = "submit" name = "action1" value="Action1"/>
-				</td>
-		    	</tr>
-	    	</table>
-		     
-	   </form>
-   	</div>
-	<!-- /.container -->
-
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</body>
+		        <tr><td colspan="2">
+		              <input type="submit" th:value="#{user.form.submit}"/> 
+		              <input type="reset" th:value="#{user.form.reset}"/>
+		            </td>
+		        </tr>
+			</table>  
+	    </form>
+	</body>
 </html>
