@@ -1,7 +1,6 @@
 # tp_3_vsoc_gui
 GUI Front End for the Virtual System on a Chip (vSOC).  Project #3 for SEIS-635
 
-# tp_3_vsoc_gui
 # 1. To compile & run "tp_3_vsoc_gui" application using maven
 mvn clean package
 
