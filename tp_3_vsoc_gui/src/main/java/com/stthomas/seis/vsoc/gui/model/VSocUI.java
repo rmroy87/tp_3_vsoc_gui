@@ -2,7 +2,9 @@ package com.stthomas.seis.vsoc.gui.model;
 
 import javax.validation.constraints.NotNull;
 
-public class VSocUI {
+import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
+
+public class VSocUI implements VSocObserver{
 	
 
 	@NotNull
@@ -76,6 +78,14 @@ public class VSocUI {
     public String toString() {
         return "UIComponent{" + "MCU_HEART_BEAT_LED = " + mcuHeartBeatLedInput + ", Fan PWM = " + fanPwmInput + ", Fan TAC=" + fanTacInput + ", Temp Sensor=" + tempSensorInput + ", DPOL - 1.0V=" + dpol1_0VInput + ", DPOL - 1.8V=" + dpol1_8VInput +'}';
     }
+
+	
+
+	@Override
+	public void update(Object o) {
+		// Print the update changes
+        System.out.println("State change '" + o.toString() + "'");
+	}
 
 
 
