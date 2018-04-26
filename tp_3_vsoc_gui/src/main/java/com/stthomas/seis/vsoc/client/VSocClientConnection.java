@@ -12,6 +12,8 @@ public abstract class VSocClientConnection {
 	private boolean      connected;
 	private int          serverPortNumber;
 	private InetAddress  serverIpAddress;
+	private VSocClientMsg lastSentMsg;
+	private boolean       lastMsgGood;
 	
 	public abstract boolean SendInputMsg(VSocClientMsg theMsg) throws Exception ;
 	public abstract void ProcessOutputMsg() throws Exception;
@@ -48,5 +50,20 @@ public abstract class VSocClientConnection {
 		this.serverIpAddress = serverIPAdress;
 	}
 	
+	public void SetLastSentMsg(VSocClientMsg lastMsg) {
+		this.lastSentMsg = lastMsg;
+	}
+	
+	public VSocClientMsg GetLastSentMsg() {
+		return this.lastSentMsg;
+	}
+	
+	public void SetLastMsgGood(boolean lastMsg) {
+		this.lastMsgGood = lastMsg;
+	}
+	
+	public boolean GetLastMsgGood() {
+		return this.lastMsgGood;
+	}
 	
 }

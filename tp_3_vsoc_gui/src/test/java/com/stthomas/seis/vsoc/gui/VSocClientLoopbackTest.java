@@ -7,62 +7,78 @@ import com.stthomas.seis.vsoc.client.VSocClientLoopback;
 import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.client.VSocDummyObserver;
 
-import org.junit.Before;
 import org.junit.Test;
 
-
-
 public class VSocClientLoopbackTest {
-
-	private VSocClientLoopback clientLB;
-	private VSocDummyObserver clientObserver;
-	
-	@Before
-	public void test_setup() {
-		this.clientObserver = new VSocDummyObserver();
-		this.clientLB = new VSocClientLoopback(this.clientObserver);
+		
+	@Test
+	public void test_connected() throws Exception {
+		VSocDummyObserver  clientObserver = new VSocDummyObserver();
+		VSocClientLoopback clientLB = new VSocClientLoopback(clientObserver);
+		
+		assertTrue("Client Loopback Connected", clientLB.GetConnected());
 	}
+	
+	@Test
+	public void test_disconnected() throws Exception {
+		VSocDummyObserver  clientObserver = new VSocDummyObserver();
+		VSocClientLoopback clientLB = new VSocClientLoopback(clientObserver);
+		
+		assertTrue("Client Loopback Connected", clientLB.GetConnected());
+		clientLB.CloseConnection();
+		assertFalse("Client Loopback Disconnected", clientLB.GetConnected());
+	}
+	
 
 	@Test
 	public void test_send_msg() throws Exception {
-		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "LBType", "LBValue" );
+		VSocDummyObserver  clientObserver = new VSocDummyObserver();
+		VSocClientLoopback clientLB = new VSocClientLoopback(clientObserver);
 		
-		assertTrue("Client Loopback Connected", this.clientLB.GetConnected());	
+		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "STRING", "LBValue" );
 		
-		this.clientLB.SendInputMsg(clientMsg);
+		assertTrue("Client Loopback Connected", clientLB.GetConnected());	
 		
-		assertTrue("Loopback Msg Pending", this.clientLB.LoopbackMsgPending());		
-	
+		clientLB.SendInputMsg(clientMsg);		
+		assertTrue("Msg Sent", clientLB.GetLastMsgGood());
+		assertTrue("Loopback Msg Pending", clientLB.LoopbackMsgPending());		
 	}
 	
 	@Test
 	public void test_last_msg_sent() throws Exception {
-		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "LBType", "LBValue" );
+		VSocDummyObserver  clientObserver = new VSocDummyObserver();
+		VSocClientLoopback clientLB = new VSocClientLoopback(clientObserver);
+		
+		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "STRING", "LBValue" );
 		VSocClientMsg sentMsg;
 		
-		assertTrue("Client Loopback Connected", this.clientLB.GetConnected());	
+		assertTrue("Client Loopback Connected", clientLB.GetConnected());	
 		
-		this.clientLB.SendInputMsg(clientMsg);
-		sentMsg = this.clientLB.GetLastMsgSent();
+		clientLB.SendInputMsg(clientMsg);		
 		
+		assertTrue("Msg Sent", clientLB.GetLastMsgGood());
+		assertTrue("Loopback Msg Pending", clientLB.LoopbackMsgPending());
+		sentMsg = clientLB.GetLastMsgSent();
 		assertTrue("Last Msg Sent not Match", clientMsg == sentMsg);		
 	}
 	
 	@Test
 	public void test_ProcessPut_msg() throws Exception {
-		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "LBType", "LBValue" );
+		VSocDummyObserver  clientObserver = new VSocDummyObserver();
+		VSocClientLoopback clientLB = new VSocClientLoopback(clientObserver);
+		VSocClientMsg clientMsg = new VSocClientMsg("LB_Name", "STRING", "LBValue" );
 		
-		assertTrue("Client Loopback Connected", this.clientLB.GetConnected());	
+		assertTrue("Client Loopback Connected", clientLB.GetConnected());	
 		
-		this.clientLB.SendInputMsg(clientMsg);
+		clientLB.SendInputMsg(clientMsg);
+		assertTrue("Msg Sent", clientLB.GetLastMsgGood());
+		assertTrue("Loopback Msg Pending", clientLB.LoopbackMsgPending());
 		
-		this.clientLB.ProcessOutputMsg();
-		assertFalse("Loopback Msg Not Pending", this.clientLB.LoopbackMsgPending());		
+		clientLB.ProcessOutputMsg();
+		assertFalse("Loopback Msg Not Pending", clientLB.LoopbackMsgPending());		
 				
-		assertTrue("Observer Name is LB_Name ", this.clientObserver.GetName().equals("LB_Name"));
-		assertTrue("Observer Type is LBType ", this.clientObserver.GetType().equals("LBType"));
-		assertTrue("Observer Value is LBValue ", this.clientObserver.GetValue().equals("LBValue"));
+		assertTrue("Observer Name is LB_Name ", clientObserver.GetName().equals("LB_Name"));
+		assertTrue("Observer Type is STRING ", clientObserver.GetType().equals("STRING"));
+		assertTrue("Observer Value is LBValue ", clientObserver.GetValue().equals("LBValue"));
 	}
-	
-
 }

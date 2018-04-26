@@ -15,6 +15,7 @@ public class VSocClientSocket extends VSocClientConnection {
 	private Socket 		socket;
 	
 	
+	
 	public VSocClientSocket(VSocDummyObserver theObserver, InetAddress serverAddress, int serverPort) {
 				
 		this.SetServerAddress(serverAddress);
@@ -29,13 +30,26 @@ public class VSocClientSocket extends VSocClientConnection {
 		}    	
     }
 	
+	public void CloseConnection() throws Exception{
+		
+		if(this.GetConnected() == true) {
+			
+			if(this.socket != null) {
+				this.socket.close();
+			}
+			
+			this.SetConnected(false);
+		}
+	}
+	
 	private void CreateSocket() throws Exception {
 		InetAddress test;
 		
 		this.socket = new Socket(this.GetServerAddress(), this.GetServerPortNumber());
      	
+		System.out.println(" Socket: " + this.socket.toString());
         test = this.socket.getInetAddress();
-        
+        System.out.println(" Test: " + test);
         if(test != null) {
         	this.sockInput = this.socket.getInputStream();    
         	this.SetConnected(true);
@@ -59,10 +73,41 @@ public class VSocClientSocket extends VSocClientConnection {
 	        
 	        bw.write(theMsg.ToMsgString());
 	        bw.flush();
+	        this.SetLastMsgGood(true);
+	        this.SetLastSentMsg(theMsg);
+		}else {
+			this.SetLastMsgGood(false);
 		}
 		
 		return this.GetConnected();
 	}
+	
+	public VSocClientMsg GetLastMsgSent() {
+		VSocClientMsg rc = null;
+		
+		if(this.GetConnected() == true) {
+			rc = this.GetLastSentMsg();
+		}
+		
+		return rc;
+	}
+	
+	//
+    // See if anything is ready to read, wait until at least the
+    // minimum value is ready to read, so we do not block for long
+    private boolean CheckInSocket() throws Exception{
+    	boolean dataReady = false;
+    	 
+    	if(this.sockInput.available() > 0) {
+    		System.out.println("InputMsg: Available = "+ this.sockInput.available());
+    	}
+    		
+    	if(this.sockInput.available() > 12) {
+    		dataReady = true;
+    	}
+    	
+    	return dataReady;    	
+    }
 	//
 	// This is used to send a OUTPUT from the SERVER, that is headed to the GUI, so while
 	// it looks like an input from this interface, it is really from outputed data from
@@ -72,16 +117,20 @@ public class VSocClientSocket extends VSocClientConnection {
 		int bytesRead = 0;
     	byte[] buf = new byte[1024];
     	
-      	
-    	this.sockInput = this.socket.getInputStream();
+    	if(this.CheckInSocket() == true) {
+    		
+    		this.sockInput = this.socket.getInputStream();
+        	
+        	bytesRead = this.sockInput.read(buf, 0, buf.length);
+        	
+        	//String output = new String(buf, 0, bytesRead);
+        	
+        	ProcessMessageBuffer(buf, bytesRead);
+        	//consoleIn.DisplayMsg("InputMsg: Received "+ bytesRead
+            //        + " bytes: " + output, true);
+    	}
     	
-    	bytesRead = this.sockInput.read(buf, 0, buf.length);
-    	
-    	//String output = new String(buf, 0, bytesRead);
-    	
-    	ProcessMessageBuffer(buf, bytesRead);
-    	//consoleIn.DisplayMsg("InputMsg: Received "+ bytesRead
-        //        + " bytes: " + output, true);   
+    	   
 	}
 	
 	private VSocClientMsg ProcessVSocMsg(byte[] rawMsg, int msgLen) {
