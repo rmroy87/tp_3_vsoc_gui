@@ -19,8 +19,7 @@ public class VSocUI implements VSocObserver{
 	private String dpol1_8VInput;
 	private String mcuHeartBeatLedInput;
 	
-	
-	
+
 
 	public String getFanPwmInput() {
 		return fanPwmInput;
