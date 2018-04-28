@@ -36,4 +36,23 @@ public class test_heartBeatLed {
 		led.setLedOff();
 		assertEquals(false, led.isLedStatusOn());
 	}
+	
+	@Test
+	public void test_getName()
+	{
+		assertEquals("MCU_HEARTBEAT_LED",led.getName());
+	}
+	
+	@Test
+	public void test_getType()
+	{
+		assertEquals("Integer", led.getType());
+	}
+	
+	@Test
+	public void test_getValue()
+	{
+		led.setLedOn();
+		assertEquals("1",led.getValue());
+	}
 }

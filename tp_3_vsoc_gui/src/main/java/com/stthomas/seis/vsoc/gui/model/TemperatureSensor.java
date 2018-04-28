@@ -5,6 +5,15 @@ public class TemperatureSensor {
 	private String temperature;
 	private String manualInput;
 	private String configuredInput;
+	private String type;
+	private String name;
+	
+	public TemperatureSensor()
+	{
+		type = "Integer";
+		name = "TEMP_SENSOR_1";
+	}
+	
 	public String getTemperature() {
 		return temperature;
 	}
@@ -23,6 +32,15 @@ public class TemperatureSensor {
 	public void setConfiguredInput(String configuredInput) {
 		this.configuredInput = configuredInput;
 	}
-	
 
+	public String getName()
+	{
+		return name;
+	}
+	
+	public String getType()
+	{
+		return type;
+	}
+	
 }

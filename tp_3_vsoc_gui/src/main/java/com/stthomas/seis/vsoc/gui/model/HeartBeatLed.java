@@ -4,10 +4,15 @@ public class HeartBeatLed {
 
 	private String heartBeatLedOnAndoff;
 	private boolean isLedOn;	// 1-On 0-off
+	private String name;
+	private String type;
+	private String value;
 
 	public HeartBeatLed()
 	{
 		isLedOn = false;
+		name = "MCU_HEARTBEAT_LED";
+		type = "Integer";
 	}
 	
 	public String getHeartBeatLedOnAndoff() {
@@ -31,5 +36,28 @@ public class HeartBeatLed {
 	public boolean isLedStatusOn()
 	{
 		return isLedOn;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public String getType()
+	{
+		return type;
+	}
+	
+	public String getValue()
+	{
+		if(isLedOn == true)
+		{
+			value = "1";
+		}
+		else
+		{
+			value = "0";
+		}
+		return value;
 	}
 }
