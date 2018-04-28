@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.stthomas.seis.vsoc.gui.model.GPI;
 
-public class test_gpio {
+public class test_gpi {
 	
 	private GPI gpio = new GPI();
 	
