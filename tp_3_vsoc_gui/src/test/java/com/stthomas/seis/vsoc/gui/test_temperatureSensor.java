@@ -37,5 +37,24 @@ public class test_temperatureSensor {
 		temp.setConfiguredInput("GPIOA");
 		assertEquals("GPIOA", temp.getConfiguredInput());
 	}
+	
+	@Test
+	public void test_getName()
+	{
+		assertEquals("TEMP_SENSOR_1",temp.getName());
+	}
+	
+	@Test
+	public void test_getType()
+	{
+		assertEquals("Integer", temp.getType());
+	}
+	
+	@Test
+	public void test_getValue()
+	{
+		temp.setTemperature("123");
+		assertEquals("123",temp.getTemperature());
+	}
 
 }
