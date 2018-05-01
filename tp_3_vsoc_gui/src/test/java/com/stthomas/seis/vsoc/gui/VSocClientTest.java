@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.net.InetAddress;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.stthomas.seis.vsoc.client.VSocDummyObserver;
