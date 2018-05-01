@@ -55,5 +55,7 @@ public class VSocClientLoopback extends VSocClientConnection {
 	public void CloseConnection() {
 		this.SetConnected(false);
 	}
+	
+	
 		
 }
