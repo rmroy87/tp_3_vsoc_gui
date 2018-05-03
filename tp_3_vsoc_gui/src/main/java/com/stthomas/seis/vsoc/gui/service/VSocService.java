@@ -42,4 +42,8 @@ public class VSocService {
         // Notify each of the observers in the list of registered observers
         this.observers.forEach(observer -> observer.update(o));
     }
+
+	public List<VSocObserver> getObeservers() {
+		return this.observers;
+	}
 } 
