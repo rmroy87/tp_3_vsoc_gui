@@ -27,6 +27,68 @@
 	         <tr th:each="vsocUI : ${inputData}">
 	        	<td th:text="'DPOL 1.8V: ' + ${vsocUI.dpol1_8VInput}" />
 	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'DPOL 3.3V: ' + ${vsocUI.dpol3_3VInput}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'DPOL 5.0V: ' + ${vsocUI.dpol5_0VInput}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'DPOL 12.0V: ' + ${vsocUI.dpol12_0VInput}" />
+	        </tr>	
+
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_INPUT_0: ' + ${vsocUI.upInput_0}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_INPUT_1: ' + ${vsocUI.upInput_1}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_INPUT_2: ' + ${vsocUI.upInput_2}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_INPUT_3: ' + ${vsocUI.upInput_3}" />
+	        </tr>	
+
+         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_INPUT_0: ' + ${vsocUI.expInput_0}" />
+	        </tr>	
+         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_INPUT_1: ' + ${vsocUI.expInput_1}" />
+	        </tr>	
+         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_INPUT_2: ' + ${vsocUI.expInput_2}" />
+	        </tr>	
+         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_INPUT_3: ' + ${vsocUI.expInput_3}" />
+	        </tr>	
+
+	        <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_LED_0: ' + ${vsocUI.upLed_0}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_LED_1: ' + ${vsocUI.upLed_1}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_LED_2: ' + ${vsocUI.upLed_2}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'UP_LED_3: ' + ${vsocUI.upLed_3}" />
+	        </tr>	
+
+ 			<tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_LED_0: ' + ${vsocUI.expLed_0}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_LED_1: ' + ${vsocUI.expLed_1}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_LED_2: ' + ${vsocUI.expLed_2}" />
+	        </tr>	
+	         <tr th:each="vsocUI : ${inputData}">
+	        	<td th:text="'EXP_LED_3: ' + ${vsocUI.expLed_3}" />
+	        </tr>	
+
        </table>
        
 	<a href="#" th:href="@{/vsoc/}" th:text="#{user.send-more-inputs}">Back</a>

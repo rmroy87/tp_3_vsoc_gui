@@ -33,9 +33,35 @@ public class VSocController {
 		mav.setViewName("vsoc_ui");
 		mav.addObject("vsocUI", new VSocUI());
 		mav.addObject("mcuHeartBeatLed_Ind", getMcuHeartBeatLed());
+		mav.addObject("fan_tac_EntryTypes", getFan_tac_EntryTypes());
+		mav.addObject("temp_sensor_EntryTypes", getTemp_Sensor_EntryTypes());
+		
 		mav.addObject("dpol1_0_EntryTypes", getDpol1_0_EntryTypes());
 		mav.addObject("dpol1_8_EntryTypes", getDpol1_8_EntryTypes());
-	
+		mav.addObject("dpol3_3_EntryTypes", getDpol3_3_EntryTypes());
+		mav.addObject("dpol5_0_EntryTypes", getDpol5_0_EntryTypes());
+		mav.addObject("dpol12_0_EntryTypes", getDpol12_0_EntryTypes());
+
+		mav.addObject("up_input_0_EntryTypes", getUp_Input_0_EntryTypes());
+		mav.addObject("up_input_1_EntryTypes", getUp_Input_1_EntryTypes());
+		mav.addObject("up_input_2_EntryTypes", getUp_Input_2_EntryTypes());
+		mav.addObject("up_input_3_EntryTypes", getUp_Input_3_EntryTypes());
+
+		mav.addObject("exp_input_0_EntryTypes", getExp_Input_0_EntryTypes());
+		mav.addObject("exp_input_1_EntryTypes", getExp_Input_1_EntryTypes());
+		mav.addObject("exp_input_2_EntryTypes", getExp_Input_2_EntryTypes());
+		mav.addObject("exp_input_3_EntryTypes", getExp_Input_3_EntryTypes());
+
+		mav.addObject("up_led_0_EntryTypes", getUp_Led_0_EntryTypes());
+		mav.addObject("up_led_1_EntryTypes", getUp_Led_1_EntryTypes());
+		mav.addObject("up_led_2_EntryTypes", getUp_Led_2_EntryTypes());
+		mav.addObject("up_led_3_EntryTypes", getUp_Led_3_EntryTypes());
+		
+		mav.addObject("exp_led_0_EntryTypes", getExp_Led_0_EntryTypes());
+		mav.addObject("exp_led_1_EntryTypes", getExp_Led_1_EntryTypes());
+		mav.addObject("exp_led_2_EntryTypes", getExp_Led_2_EntryTypes());
+		mav.addObject("exp_led_3_EntryTypes", getExp_Led_3_EntryTypes());
+
 		return mav;
 	}
 
@@ -68,6 +94,21 @@ public class VSocController {
 		return entryTypes;
 	}
 	
+	private Object getFan_tac_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+	private Object getTemp_Sensor_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+	
 	private Object getDpol1_0_EntryTypes() {
 		List<String> entryTypes = new ArrayList<>();
 		entryTypes.add("ON");
@@ -82,5 +123,142 @@ public class VSocController {
 		return entryTypes;
 	}
 	
+	private Object getDpol3_3_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getDpol5_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getDpol12_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
 
+
+	private Object getUp_Input_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+	private Object getUp_Input_1_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getUp_Input_2_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+	private Object getUp_Input_3_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+	private Object getExp_Input_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	private Object getExp_Input_1_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	private Object getExp_Input_2_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	private Object getExp_Input_3_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	
+	private Object getUp_Led_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getUp_Led_1_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getUp_Led_2_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getUp_Led_3_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	
+	private Object getExp_Led_0_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getExp_Led_1_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getExp_Led_2_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+	
+	private Object getExp_Led_3_EntryTypes() {
+		List<String> entryTypes = new ArrayList<>();
+		entryTypes.add("ON");
+		
+		return entryTypes;
+	}
+
+
+
+	
+	
 }
+	

@@ -10,6 +10,7 @@
 		    <table>
 
 			    	<tr><td th:text="#{user.ui.heartbeat.led}"></td>
+			    	  <td/>
 		    		  <td th:each="entryTypes1 : ${mcuHeartBeatLed_Ind}">
 			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}" />ON
 			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
@@ -19,58 +20,375 @@
 			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
 			    	    </td>
 			    	</tr>
-
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td th:text="#{user.ui.fan_pwm}"/></td>
 			    	    <td>
 			    	       <input type="text" th:field="*{fanPwmInput}" />
 			    	       <label th:if="${#fields.hasErrors('fanPwmInput')}" th:text="#{error.vsocUI.fanPwmInput}" th:class="'error'">Fan PWM Error</label>
 			    	    </td>
+			    	    <td colspan="2">
+			    	    Read only
+			    	   </td>	
 			    	</tr>
-			    	<tr><td th:text="#{user.ui.fan_pwm}"></td>
+			    	<tr><td th:text="#{user.ui.fan_tac}"></td>
 			    	      <td>
 			    	       <input type="text" th:field="*{fanTacInput}" />
 			    	       <label th:if="${#fields.hasErrors('fanTacInput')}" th:text="#{error.vsocUI.fanTacInput}" th:class="'error'">Fan TAC Error</label>
 			    	    </td>
+			    	    <td th:each="entryTypes2 : ${fan_tac_EntryTypes}">
+				    	       <input type="radio" th:field="*{fanTacInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('fanTacInput')}" th:text="#{error.vsocUI.fanTacInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{fanTacInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('fanTacInput')}" th:text="#{error.vsocUI.fanTacInput}" th:class="'error'">Fan TAC Error</label>
+				    	    </td>
+			    	    
 			    	</tr>
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td th:text="#{user.ui.temp_sensor}"></td>
 			    	      <td>
 			    	       <input type="text" th:field="*{tempSensorInput}" />
 			    	       <label th:if="${#fields.hasErrors('tempSensorInput')}" th:text="#{error.vsocUI.tempSensorInput}" th:class="'error'">Fan TAC Error</label>
 			    	    </td>
+			    	      <td th:each="entryTypes2 : ${temp_sensor_EntryTypes}">
+				    	       <input type="radio" th:field="*{tempSensorInput}" th:value="${entryTypes1}" />Manual Entry
+				    	       <label th:if="${#fields.hasErrors('tempSensorInput')}" th:text="#{error.vsocUI.tempSensorInput}" th:class="'error'">DPOL1.8v Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{tempSensorInput}" th:value="${entryTypes2}" />Configured Response
+				    	       <label th:if="${#fields.hasErrors('tempSensorInput')}" th:text="#{error.vsocUI.tempSensorInput}" th:class="'error'">DPOL1.8v Error</label>
+				    	    </td>
 			    	</tr>
-			    	
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr><td colspan="4"></td></tr>
 			    	<tr>
-			    		<td th:text="#{user.ui.analog_to_digital}"></td>
+			    		<td colspan="4" th:text="#{user.ui.analog_to_digital}"></td>
 			    	</tr>
 			    	<tr><td th:text="#{user.ui.dpol1.0}"></td>
 			    		<td>
 			    		   <input type="text" th:field="*{dpol1_0VInput}" />
-			    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+			    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">DPOL1.0v Error</label>
 			    	    </td>
 			    	      <td th:each="entryTypes1 : ${dpol1_0_EntryTypes}">
 				    	       <input type="radio" th:field="*{dpol1_0VInput}" th:value="${entryTypes1}" />ON
-				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">DPOL1.0v Error</label>
 				    	    </td>
 				    	    <td>
 				    	       <input type="radio" th:field="*{dpol1_0VInput}" th:value="${entryTypes2}" />OFF
-				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">Fan TAC Error</label>
+				    	       <label th:if="${#fields.hasErrors('dpol1_0VInput')}" th:text="#{error.vsocUI.dpol1_0VInput}" th:class="'error'">DPOL1.0v Error</label>
 				    	    </td>
 			    	</tr>
 			    	<tr><td th:text="#{user.ui.dpol1.8}"></td>
 			    		<td>
 			    		   <input type="text" th:field="*{dpol1_8VInput}" />
-			    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+			    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">DPOL1.8v Error</label>
 			    	    </td>
 				    	      <td th:each="entryTypes2 : ${dpol1_8_EntryTypes}">
 				    	       <input type="radio" th:field="*{dpol1_8VInput}" th:value="${entryTypes1}" />ON
-				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">DPOL1.8v Error</label>
 				    	    </td>
 				    	      <td>
 				    	       <input type="radio" th:field="*{dpol1_8VInput}" th:value="${entryTypes2}" />OFF
-				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">Fan TAC Error</label>
+				    	       <label th:if="${#fields.hasErrors('dpol1_8VInput')}" th:text="#{error.vsocUI.dpol1_8VInput}" th:class="'error'">DPOL1.8v Error</label>
+				    	    </td>
+			    	</tr>
+
+			    	<tr><td th:text="#{user.ui.dpol3.3}"></td>
+			    		<td>
+			    		   <input type="text" th:field="*{dpol3_3VInput}" />
+			    	       <label th:if="${#fields.hasErrors('dpol3_3VInput')}" th:text="#{error.vsocUI.dpol3_3VInput}" th:class="'error'">DPOL3.3v Error</label>
+			    	    </td>
+				    	      <td th:each="entryTypes2 : ${dpol3_3_EntryTypes}">
+				    	       <input type="radio" th:field="*{dpol3_3VInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('dpol3_3VInput')}" th:text="#{error.vsocUI.dpol3_3VInput}" th:class="'error'">DPOL3.3v Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{dpol3_3VInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('dpol3_3VInput')}" th:text="#{error.vsocUI.dpol3_3VInput}" th:class="'error'">DPOL3.3V Error</label>
+				    	    </td>
+			    	</tr>
+
+			    	<tr><td th:text="#{user.ui.dpol5.0}"></td>
+			    		<td>
+			    		   <input type="text" th:field="*{dpol5_0VInput}" />
+			    	       <label th:if="${#fields.hasErrors('dpol5_0VInput')}" th:text="#{error.vsocUI.dpol5_0VInput}" th:class="'error'">DPOL5.0v Error</label>
+			    	    </td>
+				    	      <td th:each="entryTypes2 : ${dpol5_0_EntryTypes}">
+				    	       <input type="radio" th:field="*{dpol5_0VInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('dpol5_0VInput')}" th:text="#{error.vsocUI.dpol5_0VInput}" th:class="'error'">DPOL5.0v Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{dpol5_0VInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('dpol5_0VInput')}" th:text="#{error.vsocUI.dpol5_0VInput}" th:class="'error'">DPOL5.0V Error</label>
 				    	    </td>
 			    	</tr>
 		    	
+		    		    	<tr><td th:text="#{user.ui.dpol12.0}"></td>
+			    		<td>
+			    		   <input type="text" th:field="*{dpol12_0VInput}" />
+			    	       <label th:if="${#fields.hasErrors('dpol12_0VInput')}" th:text="#{error.vsocUI.dpol12_0VInput}" th:class="'error'">DPOL12.0v Error</label>
+			    	    </td>
+				    	     <td th:each="entryTypes2 : ${dpol12_0_EntryTypes}">
+				    	       <input type="radio" th:field="*{dpol12_0VInput}" th:value="${entryTypes1}" />ON
+				    	       <label th:if="${#fields.hasErrors('dpol12_0VInput')}" th:text="#{error.vsocUI.dpol12_0VInput}" th:class="'error'">DPOL12.0v Error</label>
+				    	    </td>
+				    	      <td>
+				    	       <input type="radio" th:field="*{dpol12_0VInput}" th:value="${entryTypes2}" />OFF
+				    	       <label th:if="${#fields.hasErrors('dpol12_0VInput')}" th:text="#{error.vsocUI.dpol12_0VInput}" th:class="'error'">DPOL12.0V Error</label>
+				    	    </td>
+			    	</tr>
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr>
+		            <td colspan="4"><label th:text="#{user.ui.general.purpose.inputs}" /></td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_INPUT_0'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_input_0_EntryTypes}">
+			    	       <input type="radio" th:field="*{upInput_0}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upInput_0')}" th:text="#{error.vsocUI.upInput_0}" th:class="'error'">UP_INPUT_0 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upInput_0}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upInput_0')}" th:text="#{error.vsocUI.upInput_0}" th:class="'error'">UP_INPUT_0 Error</label>
+			    	    </td>		        		
+		        </tr>
+		        
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_INPUT_1'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_input_1_EntryTypes}">
+			    	       <input type="radio" th:field="*{upInput_1}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upInput_1')}" th:text="#{error.vsocUI.upInput_1}" th:class="'error'">UP_INPUT_1 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upInput_1}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upInput_1')}" th:text="#{error.vsocUI.upInput_1}" th:class="'error'">UP_INPUT_1 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_INPUT_2'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_input_2_EntryTypes}">
+			    	       <input type="radio" th:field="*{upInput_2}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upInput_2')}" th:text="#{error.vsocUI.upInput_2}" th:class="'error'">UP_INPUT_2 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upInput_2}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upInput_2')}" th:text="#{error.vsocUI.upInput_2}" th:class="'error'">UP_INPUT_2 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_INPUT_3'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_input_3_EntryTypes}">
+			    	       <input type="radio" th:field="*{upInput_3}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upInput_3')}" th:text="#{error.vsocUI.upInput_3}" th:class="'error'">UP_INPUT_3 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upInput_3}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upInput_3')}" th:text="#{error.vsocUI.upInput_3}" th:class="'error'">UP_INPUT_3 Error</label>
+			    	    </td>
+		        </tr>
+		        
+
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_INPUT_0'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_input_0_EntryTypes}">
+			    	       <input type="radio" th:field="*{expInput_0}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expInput_0')}" th:text="#{error.vsocUI.expInput_0}" th:class="'error'">EXP_INPUT_0 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expInput_0}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expInput_0')}" th:text="#{error.vsocUI.expInput_0}" th:class="'error'">EXP_INPUT_0 Error</label>
+			    	    </td>
+		        </tr>
+		        
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_INPUT_1'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_input_1_EntryTypes}">
+			    	       <input type="radio" th:field="*{expInput_1}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expInput_1')}" th:text="#{error.vsocUI.expInput_1}" th:class="'error'">EXP_INPUT_1 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expInput_1}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expInput_1')}" th:text="#{error.vsocUI.expInput_1}" th:class="'error'">EXP_INPUT_1 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+					<td>
+		        			<label th:text="'EXP_INPUT_2'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_input_2_EntryTypes}">
+			    	       <input type="radio" th:field="*{expInput_2}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expInput_2')}" th:text="#{error.vsocUI.expInput_2}" th:class="'error'">EXP_INPUT_2 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expInput_2}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expInput_2')}" th:text="#{error.vsocUI.expInput_2}" th:class="'error'">EXP_INPUT_2 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_INPUT_3'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_input_3_EntryTypes}">
+			    	       <input type="radio" th:field="*{expInput_3}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expInput_3')}" th:text="#{error.vsocUI.expInput_3}" th:class="'error'">EXP_INPUT_3 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expInput_3}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expInput_3')}" th:text="#{error.vsocUI.expInput_3}" th:class="'error'">EXP_INPUT_3 Error</label>
+			    	    </td>
+		        </tr>
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr><td colspan="4"></td></tr>
+			    	<tr>
+		            <td colspan="4"><label th:text="#{user.ui.general.purpose.outputs}" /></td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_LED_0'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_led_0_EntryTypes}">
+			    	       <input type="radio" th:field="*{upLed_0}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upLed_0')}" th:text="#{error.vsocUI.upLed_0}" th:class="'error'">UP_LED_0 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upLed_0}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upLed_0')}" th:text="#{error.vsocUI.upLed_0}" th:class="'error'">UP_LED_0 Error</label>
+			    	    </td>
+		        </tr>
+		        
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_LED_1'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_led_1_EntryTypes}">
+			    	       <input type="radio" th:field="*{upLed_1}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upLed_1')}" th:text="#{error.vsocUI.upLed_1}" th:class="'error'">UP_LED_1 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upLed_1}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upLed_1')}" th:text="#{error.vsocUI.upLed_1}" th:class="'error'">UP_LED_1 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_LED_2'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_led_2_EntryTypes}">
+			    	       <input type="radio" th:field="*{upLed_2}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upLed_2')}" th:text="#{error.vsocUI.upLed_2}" th:class="'error'">UP_LED_2 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upLed_2}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upLed_2')}" th:text="#{error.vsocUI.upLed_2}" th:class="'error'">UP_LED_2 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'UP_LED_3'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${up_led_3_EntryTypes}">
+			    	       <input type="radio" th:field="*{upLed_3}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('upLed_3')}" th:text="#{error.vsocUI.upLed_3}" th:class="'error'">UP_LED_3 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{upLed_3}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('upLed_3')}" th:text="#{error.vsocUI.upLed_3}" th:class="'error'">UP_LED_3 Error</label>
+			    	    </td>
+		        </tr>
+		        
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_LED_0'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_led_0_EntryTypes}">
+			    	       <input type="radio" th:field="*{expLed_0}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expLed_0')}" th:text="#{error.vsocUI.expInput_0}" th:class="'error'">EXP_LED_0 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expLed_0}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expLed_0')}" th:text="#{error.vsocUI.expLed_0}" th:class="'error'">EXP_LED_0 Error</label>
+			    	    </td>
+		        </tr>
+		        
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_LED_1'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_led_1_EntryTypes}">
+			    	       <input type="radio" th:field="*{expLed_1}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expLed_1')}" th:text="#{error.vsocUI.expLed_1}" th:class="'error'">EXP_LED_1 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expLed_1}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expLed_1')}" th:text="#{error.vsocUI.expLed_1}" th:class="'error'">EXP_LED_1 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+					<td>
+		        			<label th:text="'EXP_LED_2'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_led_2_EntryTypes}">
+			    	       <input type="radio" th:field="*{expLed_2}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expLed_2')}" th:text="#{error.vsocUI.expLed_2}" th:class="'error'">EXP_LED_2 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expLed_2}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expLed_2')}" th:text="#{error.vsocUI.expLed_2}" th:class="'error'">EXP_LED_2 Error</label>
+			    	    </td>
+		        </tr>
+		        <tr>
+		        		<td/>
+		        		<td>
+		        			<label th:text="'EXP_LED_3'" draggable="false" ></label>
+		        		</td>
+		        		<td th:each="entryTypes1 : ${exp_led_3_EntryTypes}">
+			    	       <input type="radio" th:field="*{expLed_3}" th:value="${entryTypes1}" />ON
+			    	       <label th:if="${#fields.hasErrors('expLed_3')}" th:text="#{error.vsocUI.expLed_3}" th:class="'error'">EXP_LED_3 Error</label>
+			    	    </td>
+			    	      <td>
+			    	       <input type="radio" th:field="*{expLed_3}" th:value="${entryTypes2}" />OFF
+						<label th:if="${#fields.hasErrors('expLed_3')}" th:text="#{error.vsocUI.expLed_3}" th:class="'error'">EXP_LED_3 Error</label>
+			    	    </td>
+		        </tr>
+		        
+		        
+		    	</table>
+		    	<table>
+ 				    	<tr><td colspan="4"></td></tr>
+ 				    	<tr><td colspan="4"></td></tr>
+ 		    	</table>
+		    	<table>
 		        <tr><td colspan="2">
 		              <input type="submit" th:value="#{user.form.submit}"/> 
 		              <input type="reset" th:value="#{user.form.reset}"/>
