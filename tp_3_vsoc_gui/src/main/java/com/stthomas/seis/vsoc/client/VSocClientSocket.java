@@ -236,7 +236,7 @@ public class VSocClientSocket extends VSocClientConnection {
     			}
     			
     		}else {
-    			done = true;;
+    			done = true;
     		}
     	}
     	

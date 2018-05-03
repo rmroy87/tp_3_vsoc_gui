@@ -45,7 +45,9 @@ public class VSocClientSocketTest {
 	public void test_all() throws Exception{
 		
 		VSocClientMsg clientMsg = new VSocClientMsg("Send_Name", "STRING", "SendValue" );
+		VSocClientMsg closedMsg = null;
 		VSocClientMsg sentMsg;
+		boolean ec;
 		
 		System.out.println("test_send_msg");
 		assertTrue("Client Connected", this.client.GetConnected());	
@@ -67,7 +69,8 @@ public class VSocClientSocketTest {
 		System.out.println("test_send_recv");
 		assertTrue("Client Connected", this.client.GetConnected());	
 		
-		this.client.SendInputMsg(clientMsg2);
+		ec = this.client.SendInputMsg(clientMsg2);
+		assertTrue("Last Msg Sent Fail", ec == true);
 		TimeUnit.SECONDS.sleep(2);
 		
 		this.client.ProcessOutputMsg();
@@ -80,6 +83,12 @@ public class VSocClientSocketTest {
 		assertTrue("Client Connected", client.GetConnected());
 		client.CloseConnection();
 		assertFalse("Client DisConnected", client.GetConnected());
+		
+		closedMsg = client.GetLastMsgSent();
+		assertTrue("Get Last Msg Sent Fail", closedMsg == null);
+		
+		ec = this.client.SendInputMsg(clientMsg2);
+		assertTrue("Last Msg Sent Fail", ec == false);
 	}
 
 }

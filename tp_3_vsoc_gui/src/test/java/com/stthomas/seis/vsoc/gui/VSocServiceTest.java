@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+//import org.mockito.MockitoAnnotations;
 
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
