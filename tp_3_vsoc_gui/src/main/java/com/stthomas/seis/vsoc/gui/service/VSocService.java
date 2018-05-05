@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.stthomas.seis.vsoc.client.VSocClient;
+import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 @Service
@@ -13,10 +15,13 @@ public class VSocService {
 
 	private List<VSocObserver> observers = new ArrayList<VSocObserver>();
 
-	public void sendInputs(VSocUI ui) {
+	public void sendInputs(VSocClient vSocClient, VSocUI ui) throws Exception {
 		//TODO
 		System.out.print(">>>>> Sending message to client...........");
-		System.out.print("MSG = " +ui.toString());
+		VSocClientMsg msg = new VSocClientMsg("TempSensor","INTEGER",ui.getTempSensorInput());
+		System.out.print("MSG = " +msg.ToMsgString());
+		vSocClient.SendVSocMsg(msg);
+		System.out.print(">>>>> message sent ...........");
 	}
 
     public List<VSocObserver> registerNewState (VSocUI ui) {

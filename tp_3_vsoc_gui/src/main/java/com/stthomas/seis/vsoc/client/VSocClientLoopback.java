@@ -1,10 +1,12 @@
 package com.stthomas.seis.vsoc.client;
 
+import com.stthomas.seis.vsoc.gui.model.VSocUI;
+
 //import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 
 public class VSocClientLoopback extends VSocClientConnection {
 	
-	public VSocClientLoopback(VSocDummyObserver theObserver) {
+	public VSocClientLoopback(VSocUI theObserver) {
 		this.SetObserver(theObserver);
 		this.SetLastMsgGood(false);
 		

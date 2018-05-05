@@ -1,5 +1,7 @@
 package com.stthomas.seis.vsoc.gui.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stthomas.seis.vsoc.client.VSocClient;
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.gui.service.VSocService;
 
@@ -66,7 +69,7 @@ public class VSocController {
 	}
 
 	@PostMapping("sendInput")
-	public ModelAndView sendUserInput(@Valid VSocUI vsocUI, BindingResult result) {
+	public ModelAndView sendUserInput(@Valid VSocUI vsocUI, BindingResult result) throws Exception {
 		logger.info(">>>>> Validation Input form.");
 		logger.info(">>>>> UI Form = " +vsocUI.toString());
 		
@@ -78,7 +81,10 @@ public class VSocController {
 			return mav;
 		}
 		
-		vSocService.sendInputs(vsocUI);
+		VSocClient vSocClient = new VSocClient(vsocUI, InetAddress.getByName("127.0.0.1"), Integer.parseInt("7010"), true);
+		vSocService.sendInputs(vSocClient, vsocUI);
+		vSocClient.ProcessVsocMsg();
+	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");
 		logger.info(">>>>> Form submitted successfully.");
