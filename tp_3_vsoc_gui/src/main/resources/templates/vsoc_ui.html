@@ -5,11 +5,18 @@
         <link rel="stylesheet" th:href="@{/css/styles.css}"/>
     </head>
 	<body>
-	    <h1 th:text="#{app.vsoc.title}">Send Input to the Virtual System (VSOC)</h1>
+		<div>
+	      <img src="../../images/logo.png" alt="vSOC logo" title="vSOC logo" 
+	           th:src="@{/images/logo.png}" th:alt-title="#{app.vsoc.title}" height="80px" width="164px"/>
+	    </div>
+	    <div>
+		    <h1 th:text="#{app.vsoc.title}">Send Input to the Virtual System (VSOC)</h1>
+		</div>
 	    <form action="#" th:action="@{/vsoc/sendInput}" th:object="${vsocUI}" method="POST">
 		    <table>
 
-			    	<tr><td th:text="#{user.ui.heartbeat.led}"></td>
+			    	<tr>
+			    		<th th:text="#{user.ui.heartbeat.led}"></th>
 			    	  <td/>
 		    		  <td th:each="entryTypes1 : ${mcuHeartBeatLed_Ind}">
 			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}" />ON
@@ -22,7 +29,8 @@
 			    	</tr>
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td colspan="4"></td></tr>
-			    	<tr><td th:text="#{user.ui.fan_pwm}"/></td>
+			    	<tr>
+			    		<th th:text="#{user.ui.fan_pwm}"/></th>
 			    	    <td>
 			    	       <input type="text" th:field="*{fanPwmInput}" />
 			    	       <label th:if="${#fields.hasErrors('fanPwmInput')}" th:text="#{error.vsocUI.fanPwmInput}" th:class="'error'">Fan PWM Error</label>
@@ -31,7 +39,8 @@
 			    	    Read only
 			    	   </td>	
 			    	</tr>
-			    	<tr><td th:text="#{user.ui.fan_tac}"></td>
+			    	<tr>
+			    		<th th:text="#{user.ui.fan_tac}"></th>
 			    	      <td>
 			    	       <input type="text" th:field="*{fanTacInput}" />
 			    	       <label th:if="${#fields.hasErrors('fanTacInput')}" th:text="#{error.vsocUI.fanTacInput}" th:class="'error'">Fan TAC Error</label>
@@ -48,7 +57,8 @@
 			    	</tr>
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td colspan="4"></td></tr>
-			    	<tr><td th:text="#{user.ui.temp_sensor}"></td>
+			    	<tr>
+			    		<th th:text="#{user.ui.temp_sensor}"></th>
 			    	      <td>
 			    	       <input type="text" th:field="*{tempSensorInput}" />
 			    	       <label th:if="${#fields.hasErrors('tempSensorInput')}" th:text="#{error.vsocUI.tempSensorInput}" th:class="'error'">Fan TAC Error</label>
@@ -65,7 +75,7 @@
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr>
-			    		<td colspan="4" th:text="#{user.ui.analog_to_digital}"></td>
+			    		<th colspan="4" th:text="#{user.ui.analog_to_digital}"></th>
 			    	</tr>
 			    	<tr><td th:text="#{user.ui.dpol1.0}"></td>
 			    		<td>
@@ -143,7 +153,7 @@
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr>
-		            <td colspan="4"><label th:text="#{user.ui.general.purpose.inputs}" /></td>
+		            <th colspan="4" th:text="#{user.ui.general.purpose.inputs}"></th>
 		        </tr>
 		        <tr>
 		        		<td/>
@@ -264,7 +274,7 @@
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr><td colspan="4"></td></tr>
 			    	<tr>
-		            <td colspan="4"><label th:text="#{user.ui.general.purpose.outputs}" /></td>
+		            <th colspan="4" th:text="#{user.ui.general.purpose.outputs}" ></th>
 		        </tr>
 		        <tr>
 		        		<td/>
