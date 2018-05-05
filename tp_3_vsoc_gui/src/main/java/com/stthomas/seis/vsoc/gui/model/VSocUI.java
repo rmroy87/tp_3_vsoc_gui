@@ -142,8 +142,6 @@ public class VSocUI implements VSocObserver {
 		this.upInput_3 = upInput_3;
 	}
 
-	
-	
 	public String getExpInput_0() {
 		return expInput_0;
 	}
