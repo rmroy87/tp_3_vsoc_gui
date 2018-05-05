@@ -19,11 +19,11 @@
 			    		<th th:text="#{user.ui.heartbeat.led}"></th>
 			    	  <td/>
 		    		  <td th:each="entryTypes1 : ${mcuHeartBeatLed_Ind}">
-			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}" />ON
+			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}"  readonly="readonly"/>ON
 			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
 			    	    </td>
 			    	    <td>
-			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes2}" />OFF
+			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes2}"  readonly="readonly"/>OFF
 			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
 			    	    </td>
 			    	</tr>

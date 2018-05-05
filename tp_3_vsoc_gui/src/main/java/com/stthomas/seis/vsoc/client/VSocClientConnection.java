@@ -2,13 +2,17 @@ package com.stthomas.seis.vsoc.client;
 
 import java.net.InetAddress;
 
+import javax.validation.Valid;
+
+import com.stthomas.seis.vsoc.gui.model.VSocUI;
+
 //import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 /*
  * Abstract class for the Client Connection Type
  */
 public abstract class VSocClientConnection {
 
-	private VSocDummyObserver observer;
+	private @Valid VSocUI observer;
 	private boolean      connected;
 	private int          serverPortNumber;
 	private InetAddress  serverIpAddress;
@@ -18,11 +22,11 @@ public abstract class VSocClientConnection {
 	public abstract boolean SendInputMsg(VSocClientMsg theMsg) throws Exception ;
 	public abstract void ProcessOutputMsg() throws Exception;
 		
-	public void SetObserver(VSocDummyObserver theObserver) {
-		this.observer = theObserver;
+	public void SetObserver(@Valid VSocUI vsocUI) {
+		this.observer = vsocUI;
 	}
 	
-	public VSocDummyObserver GetObserver() {
+	public @Valid VSocUI GetObserver() {
 		return this.observer;
 	}
 	

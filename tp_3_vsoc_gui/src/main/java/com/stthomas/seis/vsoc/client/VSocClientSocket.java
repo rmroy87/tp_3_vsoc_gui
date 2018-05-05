@@ -7,6 +7,10 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import javax.validation.Valid;
+
+import com.stthomas.seis.vsoc.gui.model.VSocUI;
+
 //import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 
 public class VSocClientSocket extends VSocClientConnection {
@@ -16,11 +20,11 @@ public class VSocClientSocket extends VSocClientConnection {
 	
 	
 	
-	public VSocClientSocket(VSocDummyObserver theObserver, InetAddress serverAddress, int serverPort) {
+	public VSocClientSocket(@Valid VSocUI vsocUI, InetAddress serverAddress, int serverPort) {
 				
 		this.SetServerAddress(serverAddress);
 		this.SetServerPortNumber(serverPort);
-		this.SetObserver(theObserver);   
+		this.SetObserver(vsocUI);   
 		
 		try {
 			this.CreateSocket();
@@ -29,6 +33,7 @@ public class VSocClientSocket extends VSocClientConnection {
 			e.printStackTrace();
 		}    	
     }
+	
 	
 	public void CloseConnection() throws Exception{
 		
