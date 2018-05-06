@@ -19,54 +19,54 @@ public abstract class VSocClientConnection {
 	private VSocClientMsg lastSentMsg;
 	private boolean       lastMsgGood;
 	
-	public abstract boolean SendInputMsg(VSocClientMsg theMsg) throws Exception ;
-	public abstract void ProcessOutputMsg() throws Exception;
+	public abstract boolean sendInputMsg(VSocClientMsg theMsg) throws Exception ;
+	public abstract void processOutputMsg() throws Exception;
 		
-	public void SetObserver(@Valid VSocUI vsocUI) {
+	public void setObserver(@Valid VSocUI vsocUI) {
 		this.observer = vsocUI;
 	}
 	
-	public @Valid VSocUI GetObserver() {
+	public @Valid VSocUI getObserver() {
 		return this.observer;
 	}
 	
-	public boolean GetConnected() {
+	public boolean getConnected() {
 		return this.connected;
 	}
 	
-	public int GetServerPortNumber() {
+	public int getServerPortNumber() {
 		return this.serverPortNumber;
 	}
 	
-	public InetAddress GetServerAddress() {
+	public InetAddress getServerAddress() {
 		return this.serverIpAddress;
 	}
 	
-	public void SetConnected(boolean connected) {
+	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
 	
-	public void SetServerPortNumber(int serverPortNumber) {
+	public void setServerPortNumber(int serverPortNumber) {
 		this.serverPortNumber = serverPortNumber;
 	}
 	
-	public void SetServerAddress(InetAddress serverIPAdress) {
+	public void setServerAddress(InetAddress serverIPAdress) {
 		this.serverIpAddress = serverIPAdress;
 	}
 	
-	public void SetLastSentMsg(VSocClientMsg lastMsg) {
+	public void setLastSentMsg(VSocClientMsg lastMsg) {
 		this.lastSentMsg = lastMsg;
 	}
 	
-	public VSocClientMsg GetLastSentMsg() {
+	public VSocClientMsg getLastSentMsg() {
 		return this.lastSentMsg;
 	}
 	
-	public void SetLastMsgGood(boolean lastMsg) {
+	public void setLastMsgGood(boolean lastMsg) {
 		this.lastMsgGood = lastMsg;
 	}
 	
-	public boolean GetLastMsgGood() {
+	public boolean getLastMsgGood() {
 		return this.lastMsgGood;
 	}
 	

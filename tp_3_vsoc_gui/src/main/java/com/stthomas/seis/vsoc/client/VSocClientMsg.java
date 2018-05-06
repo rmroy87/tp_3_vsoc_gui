@@ -11,31 +11,31 @@ public class VSocClientMsg {
 		this.msgValue = value;
 	}
 	
-	public String GetName() {
+	public String getName() {
 		return this.msgName;
 	}
 	
-	public String GetType() {
+	public String getType() {
 		return this.msgType;
 	}
 	
-	public String GetValue() {
+	public String getValue() {
 		return this.msgValue;
 	}	
 
-	public void SetName(String name) {
+	public void setName(String name) {
 		this.msgName = name;
 	}
 	
-	public void SetType(String type) {
+	public void setType(String type) {
 		this.msgType = type;
 	}
 	
-	public void SetValue(String value) {
+	public void setValue(String value) {
 		this.msgValue = value;
 	}
 
-	public String ToMsgString() {
+	public String toMsgString() {
 		String sendMessage = "<" + this.msgName + ">:<" + this.msgType + ">:<" + this.msgValue + ">";
 		return sendMessage;
 	}

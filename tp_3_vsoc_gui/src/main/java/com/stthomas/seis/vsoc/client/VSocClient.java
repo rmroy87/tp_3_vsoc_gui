@@ -32,16 +32,16 @@ public class VSocClient {
         
     }
 
-	public boolean SendVSocMsg(VSocClientMsg theMsg) throws Exception {	
-    	return this.client.SendInputMsg(theMsg);
+	public boolean sendVSocMsg(VSocClientMsg theMsg) throws Exception {	
+    	return this.client.sendInputMsg(theMsg);
     }
     
-    public void ProcessVsocMsg() throws Exception {
-    	this.client.ProcessOutputMsg();
+    public void processVsocMsg() throws Exception {
+    	this.client.processOutputMsg();
     }
     
-    public boolean ClientConnected() {
-    	return this.client.GetConnected();
+    public boolean clientConnected() {
+    	return this.client.getConnected();
     }
 
 	

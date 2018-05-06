@@ -83,7 +83,7 @@ public class VSocController {
 		
 		VSocClient vSocClient = new VSocClient(vsocUI, InetAddress.getByName("127.0.0.1"), Integer.parseInt("7010"), true);
 		vSocService.sendInputs(vSocClient, vsocUI);
-		vSocClient.ProcessVsocMsg();
+		vSocClient.processVsocMsg();
 	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");
