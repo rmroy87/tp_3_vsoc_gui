@@ -43,29 +43,4 @@ public class test_vsoc_ui
 		assertEquals("on",vsocui.getMcuHeartBeatLedInput());
 	}
 	
-	@Test 
-	public void test_gpi()
-	{
-		vsocui = new VSocUI();
-		for(int i=0; i<4;i++)
-		{
-			vsocui.setGPI(i, "UP", "on");
-			assertEquals("on",vsocui.getGPI(i, "UP"));
-			vsocui.setGPI(i, "EXP", "off");
-			assertEquals("off",vsocui.getGPI(i, "EXP"));
-		}
-	}
-	
-	@Test 
-	public void test_gpo()
-	{
-		vsocui = new VSocUI();
-		for(int i=0; i<4;i++)
-		{
-			vsocui.setGPO(i, "UP", "on");
-			assertEquals("on",vsocui.getGPO(i, "UP"));
-			vsocui.setGPO(i, "EXP", "off");
-			assertEquals("off",vsocui.getGPO(i, "EXP"));
-		}
-	}
 }
