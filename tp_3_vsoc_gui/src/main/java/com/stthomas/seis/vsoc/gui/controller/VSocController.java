@@ -91,7 +91,7 @@ public class VSocController {
 		vSocService.sendInputs(vSocClient, vsocUI);
 		
 		//receive data from the client
-		vSocClient.start();
+		//vSocClient.start();
 	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");

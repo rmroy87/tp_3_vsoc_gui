@@ -14,7 +14,6 @@ public class VSocObserverTest {
 
 	@Test
 	public void testObserver () {
-        // Create the zoo to store animals
 		VSocService service = new VSocService();
         // Register an observer to be notified when a state change occurs
 		VSocUI ui = new VSocUI();

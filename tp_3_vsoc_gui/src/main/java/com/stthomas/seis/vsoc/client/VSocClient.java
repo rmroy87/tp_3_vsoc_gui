@@ -43,7 +43,8 @@ public class VSocClient {
 		    	System.out.println(">>>>> initVScocClient Client Socket: " + serverAddress + " Port: " + port);
 	    		this.client = new VSocClientSocket(vsocUI, serverAddress, port);
 		}else{
-	    		this.client = new VSocClientLoopback(vsocUI);
+			System.out.println(">>>>> initVScocClient Client Socket VSocClientLoopback mode...................");
+    			this.client = new VSocClientLoopback(vsocUI);
 	    }
     }
 
