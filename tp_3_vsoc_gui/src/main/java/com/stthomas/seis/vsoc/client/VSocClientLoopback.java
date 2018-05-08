@@ -1,16 +1,53 @@
 package com.stthomas.seis.vsoc.client;
 
+import java.util.ArrayList;
+
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 
 //import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 
 public class VSocClientLoopback extends VSocClientConnection {
 	
+	private ArrayList<VSocClientMsg> hostOutputs;
+	private int lastIndex      = 0;
+	private int heartBeatCount = 0;
+	private VSocClientMsg heartBeat;
+	private boolean heartBeatOff = true;
+
+	
 	public VSocClientLoopback(VSocUI theObserver) {
+		this.heartBeat = new VSocClientMsg("MCU_HEART_BEAT_LED", "INTEGER", "0");
 		this.setObserver(theObserver);
 		this.setLastMsgGood(false);
-		
+		this.setupHostOutputs();
 		this.setConnected(true);
+	}
+	
+	private void setupHostOutputs() {
+		hostOutputs = new ArrayList<VSocClientMsg> (20);
+		
+		hostOutputs.add(new VSocClientMsg("UP_LED_0", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("UP_LED_1", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("UP_LED_2", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("UP_LED_3", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("EXP_LED_0", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("EXP_LED_1", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("EXP_LED_2", "INTEGER", "0"));
+		hostOutputs.add(new VSocClientMsg("EXP_LED_3", "INTEGER", "0"));
+		
+		hostOutputs.add(new VSocClientMsg("UP_LED_0", "INTEGER", "1"));	
+		hostOutputs.add(new VSocClientMsg("UP_LED_1", "INTEGER", "1"));		
+		hostOutputs.add(new VSocClientMsg("UP_LED_2", "INTEGER", "1"));		
+		hostOutputs.add(new VSocClientMsg("UP_LED_3", "INTEGER", "1"));		
+		hostOutputs.add(new VSocClientMsg("EXP_LED_0", "INTEGER", "1"));	
+		hostOutputs.add(new VSocClientMsg("EXP_LED_1", "INTEGER", "1"));		
+		hostOutputs.add(new VSocClientMsg("EXP_LED_2", "INTEGER", "1"));	
+		hostOutputs.add(new VSocClientMsg("EXP_LED_3", "INTEGER", "1"));
+		
+		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "25"));
+		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "50"));
+		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "75"));
+		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "100"));
 	}
 	
 	public boolean sendInputMsg(VSocClientMsg theMsg) throws Exception {
@@ -19,19 +56,38 @@ public class VSocClientLoopback extends VSocClientConnection {
 		if(this.getConnected() == true) {
 			this.setLastSentMsg(theMsg);
 			this.setLastMsgGood(true);
-			
+			System.out.println(">>>>> Loopback Msg Sent: " + theMsg.toMsgString());
 			rc = true;
 		}
 		
 		return rc;
 	}
 	
-	public void processOutputMsg()  throws Exception{		
-		if( (this.getConnected() == true) && 
-			(this.getLastMsgGood() == true)) {
+	public void processOutputMsg()  throws Exception{
+		int index;
+		
+		
+		if(this.getConnected() == true){
 			
-			this.getObserver().update(this.getLastMsgSent());
-			this.setLastMsgGood(false);
+			if(this.heartBeatCount == 5) {
+				if(this.heartBeatOff) {
+					this.heartBeat.setValue("1");
+					this.heartBeatOff = false;
+				}else {
+					this.heartBeat.setValue("0");
+					this.heartBeatOff = true;
+				}
+				
+				this.getObserver().update(this.heartBeat);
+				this.heartBeatCount = 0;
+			}else {
+				do {
+					index = (int) (Math.random() * 19 + 1);
+				}while(index == this.lastIndex);
+				this.lastIndex = index;				
+				this.getObserver().update(this.hostOutputs.get(index));
+				this.heartBeatCount++;
+			}			
 		}
 	}
 	

@@ -58,7 +58,7 @@ form div > ul li {
 }
 
 form div > table {
-  padding: 0;
+  padding: 1px 10px;    
 }
 
 form div > table td, form div > table th {
