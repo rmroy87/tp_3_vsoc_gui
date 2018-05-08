@@ -253,7 +253,7 @@ public class VSocUI implements VSocObserver {
 	public void update(Object o) {
 		this.clientMsg = (VSocClientMsg)o;
 		// Print the update changes
-		System.out.println("State change '" + o.toString() + "'");
+		System.out.println("State change '" + this.clientMsg.toMsgString() + "'");
 	}
 	
 	public String getName() {

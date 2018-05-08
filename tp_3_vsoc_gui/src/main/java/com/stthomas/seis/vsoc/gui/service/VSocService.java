@@ -18,7 +18,7 @@ public class VSocService {
 	public void sendInputs(VSocClient vSocClient, VSocUI ui) throws Exception {
 		//TODO
 		System.out.print(">>>>> Sending message to client...........");
-		VSocClientMsg msg = new VSocClientMsg("TempSensor","INTEGER",ui.getTempSensorInput());
+		VSocClientMsg msg = new VSocClientMsg("TEMP_SENSOR_1","INTEGER",ui.getTempSensorInput());
 		System.out.print("MSG = " +msg.toMsgString());
 		vSocClient.sendVSocMsg(msg);
 		System.out.print(">>>>> message sent ...........");

@@ -12,7 +12,7 @@ import com.stthomas.seis.vsoc.gui.model.VSocUI;
 
 public class VSocClient {
 
-	private static final long PERIOD = 60000;
+	private static final long PERIOD = 1000; //60000;
 	private static final long DELAY = 1000;
 	
 	private VSocClientConnection client;
@@ -40,11 +40,19 @@ public class VSocClient {
 	
     public void initVSocClient(@Valid VSocUI vsocUI, InetAddress serverAddress, int port, boolean loopBackMode) {
 	    if(loopBackMode == false) {
-		    	System.out.println(">>>>> initVScocClient Client Socket: " + serverAddress + " Port: " + port);
+		    	//System.out.println(">>>>> initVScocClient Client Socket: " + serverAddress + " Port: " + port);
 	    		this.client = new VSocClientSocket(vsocUI, serverAddress, port);
 		}else{
 	    		this.client = new VSocClientLoopback(vsocUI);
 	    }
+    }
+    
+    public String toString() {
+    	String connection = new String();
+    	connection = "Client Socket: " + this.client.getServerAddress() 
+    						+ " Port: " + this.client.getServerPortNumber();
+    	
+    	return connection;
     }
 
 	public boolean sendVSocMsg(VSocClientMsg theMsg) throws Exception {	

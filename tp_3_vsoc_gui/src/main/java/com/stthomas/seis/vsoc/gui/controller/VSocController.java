@@ -28,13 +28,17 @@ public class VSocController {
 	
 	@Autowired
 	private VSocService vSocService;
+	private boolean connected = false;
 	
 	
 	@GetMapping("/")
-	public ModelAndView sendUserInputView() {
+	public ModelAndView sendUserInputView()  throws Exception  {
+		VSocUI vsocUI = new VSocUI(); 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vsoc_ui");
-		mav.addObject("vsocUI", new VSocUI());
+		
+		//mav.addObject("vsocUI", new VSocUI());
+		mav.addObject("vsocUI", vsocUI);
 		mav.addObject("mcuHeartBeatLed_Ind", getMcuHeartBeatLed());
 		mav.addObject("fan_tac_EntryTypes", getFan_tac_EntryTypes());
 		mav.addObject("temp_sensor_EntryTypes", getTemp_Sensor_EntryTypes());
@@ -65,6 +69,31 @@ public class VSocController {
 		mav.addObject("exp_led_2_EntryTypes", getExp_Led_2_EntryTypes());
 		mav.addObject("exp_led_3_EntryTypes", getExp_Led_3_EntryTypes());
 
+		System.out.println("***** sendUserInputView - Called *****");
+		
+		
+		// We only need to establis the connection and start the
+		// incoming socket thread one time, so check to see if it was done
+		// before initializing the connection
+		if(this.connected == false) {
+			//Get an Singleton instance of VSocClient
+			VSocClient vSocClient = VSocClient.getInstance();
+			
+			//initialize client
+			vSocClient.initVSocClient( 	vsocUI, 
+										InetAddress.getByName("127.0.0.1"), 
+										Integer.parseInt("7010"), 
+										true);
+			
+			//receive data from the client
+			vSocClient.start();
+			this.connected = vSocClient.clientConnected();
+			logger.info(">>>>> " + vSocClient.toString());
+			logger.info(">>>>> Client Connection Established");
+		}else {
+			logger.info(">>>>> Client Connection Exists");
+		}
+				
 		return mav;
 	}
 
@@ -81,17 +110,18 @@ public class VSocController {
 			return mav;
 		}
 		
-		//Get an Singleton instance of VSocClient
-		VSocClient vSocClient = VSocClient.getInstance();
 		
-		//initialize client
-		vSocClient.initVSocClient(vsocUI, InetAddress.getByName("127.0.0.1"), Integer.parseInt("7010"), true);
-		
-		//send inputs to the client
-		vSocService.sendInputs(vSocClient, vsocUI);
-		
-		//receive data from the client
-		vSocClient.start();
+		if(this.connected == true) {
+			logger.info(">>>>> Client Connected");
+			//Get an Singleton instance of VSocClient
+			VSocClient vSocClient = VSocClient.getInstance();
+			
+			//send inputs to the client
+			vSocService.sendInputs(vSocClient, vsocUI);
+		}else {
+			logger.info(">>>>> Client Not Connected");
+		}
+				
 	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");
