@@ -23,6 +23,13 @@ public class VSocService {
 		vSocClient.sendVSocMsg(msg);
 		System.out.print(">>>>> message sent ...........");
 	}
+	
+	public void readOutputs() throws Exception {
+		//TODO
+		//receive data from the client
+		VSocClient.getInstance().start();
+	
+	}
 
     public List<VSocObserver> registerNewState (VSocUI ui) {
         // Add the UI 
