@@ -20,15 +20,15 @@ public class VSocClientMsgTest {
 	
 	@Test
 	public void testGetters() {
-		String name = this.clientMsg.GetName();
+		String name = this.clientMsg.getName();
 		assertTrue("Message Name is not TestName",
 				   (name.equals("TestName")));	
 		
-		String type = this.clientMsg.GetType();
+		String type = this.clientMsg.getType();
 		assertTrue("Message Type is not TestType",
 				   (type.equals("TestType")));
 		
-		String value = this.clientMsg.GetValue();
+		String value = this.clientMsg.getValue();
 		assertTrue("Message Value is not TestValue",
 				   (value.equals("TestValue")));	
 		
@@ -36,30 +36,30 @@ public class VSocClientMsgTest {
 	
 	@Test
 	public void testSetters() {
-		this.clientMsg.SetName("TestName2");
-		this.clientMsg.SetType("TestType2");
-		this.clientMsg.SetValue("TestValue2");
+		this.clientMsg.setName("TestName2");
+		this.clientMsg.setType("TestType2");
+		this.clientMsg.setValue("TestValue2");
 		
-		String name = this.clientMsg.GetName();
+		String name = this.clientMsg.getName();
 		assertTrue("Message Name is not TestName2",
 				   (name.equals("TestName2")));	
 		
-		String type = this.clientMsg.GetType();
+		String type = this.clientMsg.getType();
 		assertTrue("Message Type is not TestType2",
 				   (type.equals("TestType2")));
 		
-		String value = this.clientMsg.GetValue();
+		String value = this.clientMsg.getValue();
 		assertTrue("Message Value is not TestValue2",
 				   (value.equals("TestValue2")));		
 	}
 	
 	@Test
 	public void testToString() {
-		this.clientMsg.SetName("IO Name");
-		this.clientMsg.SetType("IO Type");
-		this.clientMsg.SetValue("IO Value");
+		this.clientMsg.setName("IO Name");
+		this.clientMsg.setType("IO Type");
+		this.clientMsg.setValue("IO Value");
 		
-		String msg = this.clientMsg.ToMsgString();
+		String msg = this.clientMsg.toMsgString();
 		assertTrue("Message ToString is not <IO Name>:<IO Type>:<IO Value>",
 				   (msg.equals("<IO Name>:<IO Type>:<IO Value>")));
 	

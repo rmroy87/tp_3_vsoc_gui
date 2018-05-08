@@ -22,12 +22,12 @@ public class VSocClientSocket extends VSocClientConnection {
 	
 	public VSocClientSocket(@Valid VSocUI vsocUI, InetAddress serverAddress, int serverPort) {
 				
-		this.SetServerAddress(serverAddress);
-		this.SetServerPortNumber(serverPort);
-		this.SetObserver(vsocUI);   
+		this.setServerAddress(serverAddress);
+		this.setServerPortNumber(serverPort);
+		this.setObserver(vsocUI);   
 		
 		try {
-			this.CreateSocket();
+			this.createSocket();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,29 +37,29 @@ public class VSocClientSocket extends VSocClientConnection {
 	
 	public void CloseConnection() throws Exception{
 		
-		if(this.GetConnected() == true) {
+		if(this.getConnected() == true) {
 			
 			if(this.socket != null) {
 				this.socket.close();
 			}
 			
-			this.SetConnected(false);
+			this.setConnected(false);
 		}
 	}
 	
-	private void CreateSocket() throws Exception {
+	private void createSocket() throws Exception {
 		InetAddress test;
 		
-		this.socket = new Socket(this.GetServerAddress(), this.GetServerPortNumber());
+		this.socket = new Socket(this.getServerAddress(), this.getServerPortNumber());
      	
 		System.out.println(" Socket: " + this.socket.toString());
         test = this.socket.getInetAddress();
         System.out.println(" Test: " + test);
         if(test != null) {
         	this.sockInput = this.socket.getInputStream();    
-        	this.SetConnected(true);
+        	this.setConnected(true);
         }else {
-        	this.SetConnected(false);
+        	this.setConnected(false);
         }
 		
 	}
@@ -69,29 +69,29 @@ public class VSocClientSocket extends VSocClientConnection {
 	// it looks like an output from this interface, it is really from inputed data from
 	// the GUI
 	//
-	public boolean SendInputMsg(VSocClientMsg theMsg) throws Exception {
+	public boolean sendInputMsg(VSocClientMsg theMsg) throws Exception {
 		
-		if(this.GetConnected() == true) {
+		if(this.getConnected() == true) {
 			OutputStream os = this.socket.getOutputStream();
 	        OutputStreamWriter osw = new OutputStreamWriter(os);
 	        BufferedWriter bw = new BufferedWriter(osw);
 	        
-	        bw.write(theMsg.ToMsgString());
+	        bw.write(theMsg.toMsgString());
 	        bw.flush();
-	        this.SetLastMsgGood(true);
-	        this.SetLastSentMsg(theMsg);
+	        this.setLastMsgGood(true);
+	        this.setLastSentMsg(theMsg);
 		}else {
-			this.SetLastMsgGood(false);
+			this.setLastMsgGood(false);
 		}
 		
-		return this.GetConnected();
+		return this.getConnected();
 	}
 	
-	public VSocClientMsg GetLastMsgSent() {
+	public VSocClientMsg getLastMsgSent() {
 		VSocClientMsg rc = null;
 		
-		if(this.GetConnected() == true) {
-			rc = this.GetLastSentMsg();
+		if(this.getConnected() == true) {
+			rc = this.getLastSentMsg();
 		}
 		
 		return rc;
@@ -100,7 +100,7 @@ public class VSocClientSocket extends VSocClientConnection {
 	//
     // See if anything is ready to read, wait until at least the
     // minimum value is ready to read, so we do not block for long
-    private boolean CheckInSocket() throws Exception{
+    private boolean checkInSocket() throws Exception{
     	boolean dataReady = false;
     	 
     	if(this.sockInput.available() > 0) {
@@ -118,11 +118,11 @@ public class VSocClientSocket extends VSocClientConnection {
 	// it looks like an input from this interface, it is really from outputed data from
 	// the server going to the GUI
 	//
-	public void ProcessOutputMsg()  throws Exception {		
+	public void processOutputMsg()  throws Exception {		
 		int bytesRead = 0;
     	byte[] buf = new byte[1024];
     	
-    	if(this.CheckInSocket() == true) {
+    	if(this.checkInSocket() == true) {
     		
     		this.sockInput = this.socket.getInputStream();
         	
@@ -130,7 +130,7 @@ public class VSocClientSocket extends VSocClientConnection {
         	
         	//String output = new String(buf, 0, bytesRead);
         	
-        	ProcessMessageBuffer(buf, bytesRead);
+        	processMessageBuffer(buf, bytesRead);
         	//consoleIn.DisplayMsg("InputMsg: Received "+ bytesRead
             //        + " bytes: " + output, true);
     	}
@@ -138,7 +138,7 @@ public class VSocClientSocket extends VSocClientConnection {
     	   
 	}
 	
-	private VSocClientMsg ProcessVSocMsg(byte[] rawMsg, int msgLen) {
+	private VSocClientMsg processVSocMsg(byte[] rawMsg, int msgLen) {
 		int i;
 		int j=0;
 		int element = 0;
@@ -182,7 +182,7 @@ public class VSocClientSocket extends VSocClientConnection {
 		
 	}
 	
-	private int ProcessMessageBuffer(byte[] buff, int bufLen) {
+	private int processMessageBuffer(byte[] buff, int bufLen) {
     	int count = 0;
     	boolean done = false;
     	int buffIndex = 0;
@@ -227,9 +227,9 @@ public class VSocClientSocket extends VSocClientConnection {
     					count++;
     					//
     					// Got a good message, if so, send to observer
-    					parseMsg = ProcessVSocMsg(oneMsg, outIndex);   			    	
+    					parseMsg = processVSocMsg(oneMsg, outIndex);   			    	
     			    	if(parseMsg != null) {
-    			    		this.GetObserver().update(parseMsg);
+    			    		this.getObserver().update(parseMsg);
     			    	}
     			    	
     			    	if(bufLen <= 0) {

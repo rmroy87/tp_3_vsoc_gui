@@ -19,8 +19,8 @@ public class VSocService {
 		//TODO
 		System.out.print(">>>>> Sending message to client...........");
 		VSocClientMsg msg = new VSocClientMsg("TempSensor","INTEGER",ui.getTempSensorInput());
-		System.out.print("MSG = " +msg.ToMsgString());
-		vSocClient.SendVSocMsg(msg);
+		System.out.print("MSG = " +msg.toMsgString());
+		vSocClient.sendVSocMsg(msg);
 		System.out.print(">>>>> message sent ...........");
 	}
 

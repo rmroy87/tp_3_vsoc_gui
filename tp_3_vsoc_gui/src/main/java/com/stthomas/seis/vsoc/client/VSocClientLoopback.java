@@ -7,18 +7,18 @@ import com.stthomas.seis.vsoc.gui.model.VSocUI;
 public class VSocClientLoopback extends VSocClientConnection {
 	
 	public VSocClientLoopback(VSocUI theObserver) {
-		this.SetObserver(theObserver);
-		this.SetLastMsgGood(false);
+		this.setObserver(theObserver);
+		this.setLastMsgGood(false);
 		
-		this.SetConnected(true);
+		this.setConnected(true);
 	}
 	
-	public boolean SendInputMsg(VSocClientMsg theMsg) throws Exception {
+	public boolean sendInputMsg(VSocClientMsg theMsg) throws Exception {
 		boolean rc = false;
 		
-		if(this.GetConnected() == true) {
-			this.SetLastSentMsg(theMsg);
-			this.SetLastMsgGood(true);
+		if(this.getConnected() == true) {
+			this.setLastSentMsg(theMsg);
+			this.setLastMsgGood(true);
 			
 			rc = true;
 		}
@@ -26,38 +26,35 @@ public class VSocClientLoopback extends VSocClientConnection {
 		return rc;
 	}
 	
-	public void ProcessOutputMsg()  throws Exception{		
-		if( (this.GetConnected() == true) && 
-			(this.GetLastMsgGood() == true)) {
+	public void processOutputMsg()  throws Exception{		
+		if( (this.getConnected() == true) && 
+			(this.getLastMsgGood() == true)) {
 			
-			this.GetObserver().update(this.GetLastMsgSent());
-			this.SetLastMsgGood(false);
+			this.getObserver().update(this.getLastMsgSent());
+			this.setLastMsgGood(false);
 		}
 	}
 	
-	public boolean LoopbackMsgPending() {
+	public boolean loopbackMsgPending() {
 		boolean rc = false;
 		
-		if(this.GetConnected() == true) {
-			rc = this.GetLastMsgGood();
+		if(this.getConnected() == true) {
+			rc = this.getLastMsgGood();
 		}
 		return rc;
 	}
 	
-	public VSocClientMsg GetLastMsgSent() {
+	public VSocClientMsg getLastMsgSent() {
 		VSocClientMsg rc = null;
 		
-		if(this.GetConnected() == true) {
-			rc = this.GetLastSentMsg();
+		if(this.getConnected() == true) {
+			rc = this.getLastSentMsg();
 		}
 		
 		return rc;
 	}
 	
-	public void CloseConnection() {
-		this.SetConnected(false);
-	}
-	
-	
-		
+	public void closeConnection() {
+		this.setConnected(false);
+	}		
 }

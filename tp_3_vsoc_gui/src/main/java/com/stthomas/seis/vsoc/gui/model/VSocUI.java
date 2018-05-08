@@ -2,6 +2,7 @@ package com.stthomas.seis.vsoc.gui.model;
 
 import javax.validation.constraints.NotNull;
 
+import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 
 public class VSocUI implements VSocObserver {
@@ -35,6 +36,7 @@ public class VSocUI implements VSocObserver {
 	private String expLed_2;
 	private String expLed_3;
 
+	private VSocClientMsg clientMsg;
 	
 
 
@@ -142,8 +144,6 @@ public class VSocUI implements VSocObserver {
 		this.upInput_3 = upInput_3;
 	}
 
-	
-	
 	public String getExpInput_0() {
 		return expInput_0;
 	}
@@ -251,8 +251,20 @@ public class VSocUI implements VSocObserver {
 
 	@Override
 	public void update(Object o) {
+		this.clientMsg = (VSocClientMsg)o;
 		// Print the update changes
 		System.out.println("State change '" + o.toString() + "'");
+	}
+	
+	public String getName() {
+		return this.clientMsg.getName();
+	}
+	
+	public String getType() {
+		return this.clientMsg.getType();
+	}
+	public String getValue() {
+		return this.clientMsg.getValue();
 	}
 
 }

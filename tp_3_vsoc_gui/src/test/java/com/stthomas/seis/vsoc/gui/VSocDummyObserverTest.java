@@ -23,9 +23,9 @@ public class VSocDummyObserverTest {
 	public void test_update() {
 		this.clientObserver.update(this.clientMsg);
 		
-		assertTrue("Observer Name is ObsName ", this.clientObserver.GetName().equals("ObsName"));
-		assertTrue("Observer Type is ObsType ", this.clientObserver.GetType().equals("ObsType"));
-		assertTrue("Observer Value is ObsValue ", this.clientObserver.GetValue().equals("ObsValue"));
+		assertTrue("Observer Name is ObsName ", this.clientObserver.getName().equals("ObsName"));
+		assertTrue("Observer Type is ObsType ", this.clientObserver.getType().equals("ObsType"));
+		assertTrue("Observer Value is ObsValue ", this.clientObserver.getValue().equals("ObsValue"));
 		
 	}
 

@@ -81,9 +81,17 @@ public class VSocController {
 			return mav;
 		}
 		
-		VSocClient vSocClient = new VSocClient(vsocUI, InetAddress.getByName("127.0.0.1"), Integer.parseInt("7010"), true);
+		//Get an Singleton instance of VSocClient
+		VSocClient vSocClient = VSocClient.getInstance();
+		
+		//initialize client
+		vSocClient.initVSocClient(vsocUI, InetAddress.getByName("127.0.0.1"), Integer.parseInt("7010"), true);
+		
+		//send inputs to the client
 		vSocService.sendInputs(vSocClient, vsocUI);
-		vSocClient.ProcessVsocMsg();
+		
+		//receive data from the client
+		vSocClient.start();
 	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");

@@ -12,21 +12,21 @@ public class VSocDummyObserver {
 		this.clientMsg = msg;
 		
 		System.out.print("VSocDummyObserver::update - ");
-		System.out.println(this.MsgToString());
+		System.out.println(this.msgToString());
 	}
 	
-	public String GetName() {
-		return this.clientMsg.GetName();
+	public String getName() {
+		return this.clientMsg.getName();
 	}
 	
-	public String GetType() {
-		return this.clientMsg.GetType();
+	public String getType() {
+		return this.clientMsg.getType();
 	}
-	public String GetValue() {
-		return this.clientMsg.GetValue();
+	public String getValue() {
+		return this.clientMsg.getValue();
 	}
-	public String MsgToString() {
-		return this.clientMsg.ToMsgString();
+	public String msgToString() {
+		return this.clientMsg.toMsgString();
 	}
 
 }

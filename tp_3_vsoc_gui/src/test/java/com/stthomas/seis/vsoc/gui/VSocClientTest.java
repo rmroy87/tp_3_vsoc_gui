@@ -7,13 +7,13 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
-import com.stthomas.seis.vsoc.client.VSocDummyObserver;
+import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.client.VSocClient;
 import com.stthomas.seis.vsoc.client.VSocClientMsg;
 
 public class VSocClientTest {
 	private VSocClient client;
-	private VSocDummyObserver clientObserver;
+	private VSocUI clientObserver;
 	
 //	@Test
 //	public void test_client_loopback() throws Exception{
