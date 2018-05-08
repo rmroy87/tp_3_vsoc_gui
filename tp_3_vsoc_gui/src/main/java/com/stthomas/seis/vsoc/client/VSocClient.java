@@ -60,6 +60,7 @@ public class VSocClient {
     }
     
     public void processVsocMsg() throws Exception {
+    		System.out.println(">>>>>>>> TODO: Process data back the client <<<<<<<<<<<");
     		this.client.processOutputMsg();
     }
     
