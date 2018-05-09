@@ -150,7 +150,7 @@ public class VSocController {
 			vSocClient.initVSocClient( 	vsocUI, 
 										InetAddress.getByName("127.0.0.1"), 
 										Integer.parseInt("7010"), 
-										false);
+										true);
 			
 			//receive data from the client
 			vSocClient.start();
