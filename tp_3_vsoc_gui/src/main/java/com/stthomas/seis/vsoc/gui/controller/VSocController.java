@@ -50,39 +50,39 @@ public class VSocController {
 				switch(msg.getName()) {
 					case "MCU_HEART_BEAT_LED":
 						vsocUI.setMcuHeartBeatLedInput(msg.getValue());	
-						logger.info(">>>>> Heart Beat LED State Change = " + msg.getValue());
+						logger.info(">>>>> Heart Beat LED State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;				
 					case "EXP_LED_0":
 						vsocUI.setExpLed_0(msg.getValue());	
-						logger.info(">>>>> EXP LED 0 State Change = " + msg.getValue());
+						logger.info(">>>>> EXP LED 0 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "EXP_LED_1":
 						vsocUI.setExpLed_1(msg.getValue());	
-						logger.info(">>>>> EXP LED 1 State Change = " + msg.getValue());
+						logger.info(">>>>> EXP LED 1 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "EXP_LED_2":
 						vsocUI.setExpLed_2(msg.getValue());	
-						logger.info(">>>>> EXP LED 2 State Change = " + msg.getValue());
+						logger.info(">>>>> EXP LED 2 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "EXP_LED_3":
 						vsocUI.setExpLed_3(msg.getValue());	
-						logger.info(">>>>> EXP LED 3 State Change = " + msg.getValue());
+						logger.info(">>>>> EXP LED 3 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_0":
 						vsocUI.setUpInput_0(msg.getValue());	
-						logger.info(">>>>> UP LED 0 State Change = " + msg.getValue());
+						logger.info(">>>>> UP LED 0 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_1":
 						vsocUI.setUpInput_1(msg.getValue());	
-						logger.info(">>>>> UP LED 1 State Change = " + msg.getValue());
+						logger.info(">>>>> UP LED 1 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_2":
 						vsocUI.setUpInput_2(msg.getValue());	
-						logger.info(">>>>> UP LED 2 State Change = " + msg.getValue());
+						logger.info(">>>>> UP LED 2 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_3":
 						vsocUI.setUpInput_3(msg.getValue());	
-						logger.info(">>>>> UP LED 3 State Change = " + msg.getValue());
+						logger.info(">>>>> UP LED 3 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "Fan Pwm":
 						vsocUI.setFanPwmInput(msg.getValue());	
@@ -95,6 +95,17 @@ public class VSocController {
 		}
 		
 		return mav;
+	}
+	
+	private String convertBinaryToOnOff(String binaryIn) {
+		String onOffOut = new String();
+		
+		if(("1").equals(binaryIn)) {
+			onOffOut = "ON";
+		}else {
+			onOffOut = "OFF";
+		}
+		return onOffOut;
 	}
 	
 	@GetMapping("/")

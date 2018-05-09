@@ -21,12 +21,48 @@ public class VSocService {
 		return outputStateChanges;
 	}
 
+	private void sendInputMsg(VSocClient vSocClient, String Name, String Type, String Value) throws Exception {
+		System.out.println(">>>>> Sending message to client...........");
+		
+		if(("INTEGER").equalsIgnoreCase(Type)){
+			if(("ON").equalsIgnoreCase(Value)) {
+				Value = "1";
+			}else if(("OFF").equalsIgnoreCase(Value)){
+				Value = "0";
+			}
+		}
+		VSocClientMsg msg = new VSocClientMsg(Name,Type, Value);
+		System.out.println("MSG = " +msg.toMsgString());
+		vSocClient.sendVSocMsg(msg);		
+		System.out.println(">>>>> message sent ...........");
+	}
 	public void sendInputs(VSocClient vSocClient, VSocUI ui) throws Exception {
-		System.out.print(">>>>> Sending message to client...........");
-		VSocClientMsg msg = new VSocClientMsg("TEMP_SENSOR_1","INTEGER",ui.getTempSensorInput());
-		System.out.print("MSG = " +msg.toMsgString());
-		vSocClient.sendVSocMsg(msg);
-		System.out.print(">>>>> message sent ...........");
+		System.out.println(">>>>> Sending Inputs to client...........");
+		//VSocClientMsg msg = new VSocClientMsg("TEMP_SENSOR_1","INTEGER",ui.getTempSensorInput());
+		//System.out.print("MSG = " +msg.toMsgString());
+		//vSocClient.sendVSocMsg(msg);
+		
+		sendInputMsg(vSocClient, "TEMP_SENSOR_1", "INTEGER", ui.getTempSensorInput());
+		sendInputMsg(vSocClient, "Fan TAC", "INTEGER", ui.getFanTacInput());
+		
+		sendInputMsg(vSocClient, "DPOL-  1.0V", "INTEGER", ui.getDpol1_0VInput());
+		sendInputMsg(vSocClient, "DPOL-  1.8V", "INTEGER", ui.getDpol1_8VInput());
+		sendInputMsg(vSocClient, "DPOL-  3.3V", "INTEGER", ui.getDpol3_3VInput());
+		sendInputMsg(vSocClient, "DPOL-  5.0V", "INTEGER", ui.getDpol5_0VInput());
+		sendInputMsg(vSocClient, "DPOL- 12.0V", "INTEGER", ui.getDpol12_0VInput());		
+		
+		sendInputMsg(vSocClient, "UP_INPUT_0", "INTEGER", ui.getUpInput_0());
+		sendInputMsg(vSocClient, "UP_INPUT_1", "INTEGER", ui.getUpInput_1());
+		sendInputMsg(vSocClient, "UP_INPUT_2", "INTEGER", ui.getUpInput_2());
+		sendInputMsg(vSocClient, "UP_INPUT_3", "INTEGER", ui.getUpInput_3());
+		
+		sendInputMsg(vSocClient, "EXP_INPUT_0", "INTEGER", ui.getExpInput_0());
+		sendInputMsg(vSocClient, "EXP_INPUT_1", "INTEGER", ui.getExpInput_1());
+		sendInputMsg(vSocClient, "EXP_INPUT_2", "INTEGER", ui.getExpInput_2());
+		sendInputMsg(vSocClient, "EXP_INPUT_3", "INTEGER", ui.getExpInput_3());
+		
+		
+		System.out.println(">>>>> Inputs sent ...........");
 	}
 	
 	public List<VSocClientMsg> readOutputs() throws Exception {

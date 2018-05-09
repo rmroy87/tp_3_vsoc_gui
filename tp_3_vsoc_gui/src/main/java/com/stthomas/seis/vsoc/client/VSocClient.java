@@ -61,7 +61,7 @@ public class VSocClient {
     }
     
     public void processVsocMsg() throws Exception {
-    		System.out.println(">>>>>>>> TODO: Process data back the client <<<<<<<<<<<");
+    		//System.out.println(">>>>>>>> Client Interface Process Msgs <<<<<<<<<<<");
     		this.client.processOutputMsg();
     }
     
