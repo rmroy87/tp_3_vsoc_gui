@@ -14,9 +14,14 @@ import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 public class VSocService {
 
 	private List<VSocObserver> observers = new ArrayList<VSocObserver>();
+	private List<VSocClientMsg> outputStateChanges = new ArrayList<VSocClientMsg>();
+
+	public List<VSocClientMsg> getOutputStateChanges() {
+		System.out.println("*** getOutputStateChanges::List OUT Size =  " + outputStateChanges.size() );
+		return outputStateChanges;
+	}
 
 	public void sendInputs(VSocClient vSocClient, VSocUI ui) throws Exception {
-		//TODO
 		System.out.print(">>>>> Sending message to client...........");
 		VSocClientMsg msg = new VSocClientMsg("TEMP_SENSOR_1","INTEGER",ui.getTempSensorInput());
 		System.out.print("MSG = " +msg.toMsgString());
@@ -24,11 +29,11 @@ public class VSocService {
 		System.out.print(">>>>> message sent ...........");
 	}
 	
-	public void readOutputs() throws Exception {
-		//TODO
-		//receive data from the client
-		VSocClient.getInstance().start();
+	public List<VSocClientMsg> readOutputs() throws Exception {
+		// Get the Array list of client messages
+		List<VSocClientMsg> listOutput = getOutputStateChanges();
 	
+		return listOutput;
 	}
 
     public List<VSocObserver> registerNewState (VSocUI ui) {
@@ -58,4 +63,25 @@ public class VSocService {
 	public List<VSocObserver> getObeservers() {
 		return this.observers;
 	}
+
+	public void setOutputStateChanges(List<VSocClientMsg> newOutputStateChanges) {
+		// TODO Auto-generated method stub
+		//System.out.println("*** setOutputStateChanges::List IN Size =  " + newOutputStateChanges.size() );
+		
+		outputStateChanges = newOutputStateChanges;
+		//System.out.println("*** setOutputStateChanges::List OUT Size =  " + outputStateChanges.size() );
+	}
+	
+	public void addOutputStateChanges(VSocClientMsg newOutputStateMsg) {
+		outputStateChanges.add(newOutputStateMsg);
+		//System.out.println("*** addOutputStateChanges::List Size =  " + outputStateChanges.size() );
+		
+	}
+
+	public void clearOutputs() {
+		//System.out.println("*** clearOutputs::List Size =  " + outputStateChanges.size() );
+		outputStateChanges.clear();
+		//System.out.println("*** clearOutputs::List Size =  " + outputStateChanges.size() );
+	}
+	
 } 

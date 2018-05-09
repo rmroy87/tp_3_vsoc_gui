@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stthomas.seis.vsoc.client.VSocClient;
+import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.gui.service.VSocService;
 
@@ -30,10 +31,76 @@ public class VSocController {
 	private VSocService vSocService;
 	private boolean connected = false;
 	
+	//@GetMapping("/readoutputs")
+	public ModelAndView readServerOutput()  throws Exception  {
+		VSocUI vsocUI = new VSocUI();
+		vsocUI.setvSocService(vSocService);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("ui-info");
+		
+		//
+		// The Socket processing thread will push updates into this list,
+		// so synchronize here, process the list and then clear it
+		synchronized(vSocService) {
+			List<VSocClientMsg> listOutput = vSocService.readOutputs();
+			//logger.info("**** readServerOutput invoked - Size: " + listOutput.size());
+			for(VSocClientMsg msg:listOutput) {
+				//logger.info("***** MSG = " + msg.getName());
+				
+				switch(msg.getName()) {
+					case "MCU_HEART_BEAT_LED":
+						vsocUI.setMcuHeartBeatLedInput(msg.getValue());	
+						logger.info(">>>>> Heart Beat LED State Change = " + msg.getValue());
+						break;				
+					case "EXP_LED_0":
+						vsocUI.setExpLed_0(msg.getValue());	
+						logger.info(">>>>> EXP LED 0 State Change = " + msg.getValue());
+						break;
+					case "EXP_LED_1":
+						vsocUI.setExpLed_1(msg.getValue());	
+						logger.info(">>>>> EXP LED 1 State Change = " + msg.getValue());
+						break;
+					case "EXP_LED_2":
+						vsocUI.setExpLed_2(msg.getValue());	
+						logger.info(">>>>> EXP LED 2 State Change = " + msg.getValue());
+						break;
+					case "EXP_LED_3":
+						vsocUI.setExpLed_3(msg.getValue());	
+						logger.info(">>>>> EXP LED 3 State Change = " + msg.getValue());
+						break;
+					case "UP_LED_0":
+						vsocUI.setUpInput_0(msg.getValue());	
+						logger.info(">>>>> UP LED 0 State Change = " + msg.getValue());
+						break;
+					case "UP_LED_1":
+						vsocUI.setUpInput_1(msg.getValue());	
+						logger.info(">>>>> UP LED 1 State Change = " + msg.getValue());
+						break;
+					case "UP_LED_2":
+						vsocUI.setUpInput_2(msg.getValue());	
+						logger.info(">>>>> UP LED 2 State Change = " + msg.getValue());
+						break;
+					case "UP_LED_3":
+						vsocUI.setUpInput_3(msg.getValue());	
+						logger.info(">>>>> UP LED 3 State Change = " + msg.getValue());
+						break;
+					case "Fan Pwm":
+						vsocUI.setFanPwmInput(msg.getValue());	
+						logger.info(">>>>> Fan PWM State Change = " + msg.getValue());
+						break;
+				
+				}				
+			}
+			vSocService.clearOutputs();
+		}
+		
+		return mav;
+	}
 	
 	@GetMapping("/")
 	public ModelAndView sendUserInputView()  throws Exception  {
 		VSocUI vsocUI = new VSocUI(); 
+		vsocUI.setvSocService(vSocService);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("vsoc_ui");
 		
@@ -83,7 +150,7 @@ public class VSocController {
 			vSocClient.initVSocClient( 	vsocUI, 
 										InetAddress.getByName("127.0.0.1"), 
 										Integer.parseInt("7010"), 
-										true);
+										false);
 			
 			//receive data from the client
 			vSocClient.start();
@@ -125,6 +192,7 @@ public class VSocController {
 	
 		mav.addObject("inputData", vsocUI);
 		mav.setViewName("ui-info");
+		readServerOutput();
 		logger.info(">>>>> Form submitted successfully.");
 		return mav;
 	}

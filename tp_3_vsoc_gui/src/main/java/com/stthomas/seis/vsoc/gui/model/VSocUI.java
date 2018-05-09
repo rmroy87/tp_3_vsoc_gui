@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
+import com.stthomas.seis.vsoc.gui.service.VSocService;
 
 public class VSocUI implements VSocObserver {
 
@@ -36,9 +37,17 @@ public class VSocUI implements VSocObserver {
 	private String expLed_2;
 	private String expLed_3;
 
+	private VSocService vSocService;
+	
 	private VSocClientMsg clientMsg;
 	
+	public VSocService getvSocService() {
+		return vSocService;
+	}
 
+	public void setvSocService(VSocService vSocService) {
+		this.vSocService = vSocService;
+	}
 
 	public String getDpol3_3VInput() {
 		return dpol3_3VInput;
@@ -252,8 +261,10 @@ public class VSocUI implements VSocObserver {
 	@Override
 	public void update(Object o) {
 		this.clientMsg = (VSocClientMsg)o;
-		// Print the update changes
-		System.out.println("State change '" + this.clientMsg.toMsgString() + "'");
+		// Print the update changes	
+		System.out.println("*** update::State Change '" + this.clientMsg.toMsgString() + "'");
+		// Push to the Service Class and let it process the state change
+		this.vSocService.addOutputStateChanges(this.clientMsg);
 	}
 	
 	public String getName() {
