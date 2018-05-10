@@ -12,7 +12,7 @@ import com.stthomas.seis.vsoc.gui.model.VSocUI;
 
 public class VSocClient {
 
-	private static final long PERIOD = 1000; //60000;
+	private static final long PERIOD = 6000; //60000;
 	private static final long DELAY = 1000;
 	
 	private VSocClientConnection client;
@@ -61,7 +61,7 @@ public class VSocClient {
     }
     
     public void processVsocMsg() throws Exception {
-    		System.out.println(">>>>>>>> TODO: Process data back the client <<<<<<<<<<<");
+    		//System.out.println(">>>>>>>> Client Interface Process Msgs <<<<<<<<<<<");
     		this.client.processOutputMsg();
     }
     

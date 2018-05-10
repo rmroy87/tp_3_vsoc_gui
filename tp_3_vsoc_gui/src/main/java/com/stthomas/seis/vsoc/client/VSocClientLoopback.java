@@ -13,6 +13,7 @@ public class VSocClientLoopback extends VSocClientConnection {
 	private int heartBeatCount = 0;
 	private VSocClientMsg heartBeat;
 	private boolean heartBeatOff = true;
+	private boolean firstProcess = true;
 
 	
 	public VSocClientLoopback(VSocUI theObserver) {
@@ -44,7 +45,7 @@ public class VSocClientLoopback extends VSocClientConnection {
 		hostOutputs.add(new VSocClientMsg("EXP_LED_2", "INTEGER", "1"));	
 		hostOutputs.add(new VSocClientMsg("EXP_LED_3", "INTEGER", "1"));
 		
-		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "25"));
+		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "20"));
 		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "50"));
 		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "75"));
 		hostOutputs.add(new VSocClientMsg("Fan Pwm", "INTEGER", "100"));
@@ -68,6 +69,15 @@ public class VSocClientLoopback extends VSocClientConnection {
 		
 		
 		if(this.getConnected() == true){
+			
+			if(firstProcess == true) {
+				this.getObserver().update(this.hostOutputs.get(12));
+				this.getObserver().update(this.hostOutputs.get(13));
+				this.getObserver().update(this.hostOutputs.get(14));
+				this.getObserver().update(this.hostOutputs.get(15));
+				this.getObserver().update(this.hostOutputs.get(16));
+				firstProcess = false;
+			}
 			
 			if(this.heartBeatCount == 5) {
 				if(this.heartBeatOff) {
