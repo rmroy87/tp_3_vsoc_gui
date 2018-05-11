@@ -69,19 +69,19 @@ public class VSocController {
 						logger.info(">>>>> EXP LED 3 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_0":
-						vsocUI.setUpInput_0(msg.getValue());	
+						vsocUI.setUpLed_0(msg.getValue());	
 						logger.info(">>>>> UP LED 0 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_1":
-						vsocUI.setUpInput_1(msg.getValue());	
+						vsocUI.setUpLed_1(msg.getValue());	
 						logger.info(">>>>> UP LED 1 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_2":
-						vsocUI.setUpInput_2(msg.getValue());	
+						vsocUI.setUpLed_2(msg.getValue());	
 						logger.info(">>>>> UP LED 2 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "UP_LED_3":
-						vsocUI.setUpInput_3(msg.getValue());	
+						vsocUI.setUpLed_3(msg.getValue());	
 						logger.info(">>>>> UP LED 3 State Change = " + convertBinaryToOnOff(msg.getValue()));
 						break;
 					case "Fan Pwm":
