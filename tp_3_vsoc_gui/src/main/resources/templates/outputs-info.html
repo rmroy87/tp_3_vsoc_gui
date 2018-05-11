@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="#{app.vsoc.title}">Title</title>
+<link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+	<div>
+		<img src="../../images/logo.png" alt="vSOC logo" title="vSOC logo"
+			th:src="@{/images/logo2.png}" th:alt-title="#{app.vsoc.title}"
+			height="80px" width="600px" />
+	</div>
+	<div>
+		<h1 th:text="#{app.user.read.output}">Read Outputs</h1>
+	</div>
+	<table border="1px">
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'MCU_HEART_BEAT_LED: ' + ${vsocUI.mcuHeartBeatLedInput}" />
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+	</table>
+	
+	<table border="1px">
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'Fan Pwm: ' + ${vsocUI.fanPwmInput}" />
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+	</table>
+
+	<table border="1px" >
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'UP_LED_0: ' + ${vsocUI.upLed_0}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'UP_LED_1: ' + ${vsocUI.upLed_1}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'UP_LED_2: ' + ${vsocUI.upLed_2}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'UP_LED_3: ' + ${vsocUI.upLed_3}" />
+		</tr>
+
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'EXP_LED_0: ' + ${vsocUI.expLed_0}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'EXP_LED_1: ' + ${vsocUI.expLed_1}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'EXP_LED_2: ' + ${vsocUI.expLed_2}" />
+		</tr>
+		<tr th:each="vsocUI : ${outputData}">
+			<th th:text="'EXP_LED_3: ' + ${vsocUI.expLed_3}" />
+		</tr>
+
+	</table>
+	<table>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+			<td colspan="2">
+				<a href="#" th:href="@{/vsoc/readoutputs}" th:text="#{user.refresh-outputs}"></a>
+			</td>
+			<td> | </td>
+			<td colspan="2">
+				<a href="#" th:href="@{/vsoc/}" th:text="#{user.send-more-inputs}"></a>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
