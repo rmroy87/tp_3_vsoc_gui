@@ -31,12 +31,12 @@ public class VSocController {
 	private VSocService vSocService;
 	private boolean connected = false;
 	
-	//@GetMapping("/readoutputs")
+	@GetMapping("/readoutputs")
 	public ModelAndView readServerOutput()  throws Exception  {
 		VSocUI vsocUI = new VSocUI();
 		vsocUI.setvSocService(vSocService);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("ui-info");
+		mav.setViewName("outputs-info");
 		
 		//
 		// The Socket processing thread will push updates into this list,
@@ -93,7 +93,9 @@ public class VSocController {
 			}
 			vSocService.clearOutputs();
 		}
-		
+
+		mav.addObject("outputData", vsocUI);
+
 		return mav;
 	}
 	

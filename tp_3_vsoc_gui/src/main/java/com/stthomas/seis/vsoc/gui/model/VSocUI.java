@@ -1,7 +1,5 @@
 package com.stthomas.seis.vsoc.gui.model;
 
-import javax.validation.constraints.NotNull;
-
 import com.stthomas.seis.vsoc.client.VSocClientMsg;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 import com.stthomas.seis.vsoc.gui.service.VSocService;
@@ -9,10 +7,7 @@ import com.stthomas.seis.vsoc.gui.service.VSocService;
 public class VSocUI implements VSocObserver {
 
 	private String mcuHeartBeatLedInput;
-	@NotNull
 	private String fanPwmInput;
-
-	@NotNull
 	private String fanTacInput;
 	private String tempSensorInput;
 	private String dpol1_0VInput;

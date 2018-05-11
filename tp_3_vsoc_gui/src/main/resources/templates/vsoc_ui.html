@@ -7,38 +7,13 @@
 	<body>
 		<div>
 	      <img src="../../images/logo.png" alt="vSOC logo" title="vSOC logo" 
-	           th:src="@{/images/logo.png}" th:alt-title="#{app.vsoc.title}" height="80px" width="164px"/>
+	           th:src="@{/images/logo2.png}" th:alt-title="#{app.vsoc.title}" height="80px" width="600px"/>
 	    </div>
 	    <div>
 		    <h1 th:text="#{app.vsoc.title}">Send Input to the Virtual System (VSOC)</h1>
 		</div>
 	    <form action="#" th:action="@{/vsoc/sendInput}" th:object="${vsocUI}" method="POST">
 		    <table>
-
-			    	<tr>
-			    		<th th:text="#{user.ui.heartbeat.led}"></th>
-			    	  <td/>
-		    		  <td th:each="entryTypes1 : ${mcuHeartBeatLed_Ind}">
-			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes1}"  checked/>ON
-			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
-			    	    </td>
-			    	    <td>
-			    	       <input type="radio" th:field="*{mcuHeartBeatLedInput}" th:value="${entryTypes2}"  disabled/>OFF
-			    	       <label th:if="${#fields.hasErrors('mcuHeartBeatLedInput')}" th:text="#{error.vsocUI.mcuHeartBeatLedInput}" th:class="'error'">MCU_HEART_BEAT_LED Error</label>
-			    	    </td>
-			    	</tr>
-			    	<tr><td colspan="4"></td></tr>
-			    	<tr><td colspan="4"></td></tr>
-			    	<tr>
-			    		<th th:text="#{user.ui.fan_pwm}"/></th>
-			    	    <td>
-			    	       <input type="text" th:field="*{fanPwmInput}" readonly="readonly"/>
-			    	       <label th:if="${#fields.hasErrors('fanPwmInput')}" th:text="#{error.vsocUI.fanPwmInput}" th:class="'error'">Fan PWM Error</label>
-			    	    </td>
-			    	    <td colspan="2">
-			    	    Read only
-			    	   </td>	
-			    	</tr>
 			    	<tr>
 			    		<th th:text="#{user.ui.fan_tac}"></th>
 			    	      <td>
@@ -271,128 +246,6 @@
 						<label th:if="${#fields.hasErrors('expInput_3')}" th:text="#{error.vsocUI.expInput_3}" th:class="'error'">EXP_INPUT_3 Error</label>
 			    	    </td>
 		        </tr>
-			    	<tr><td colspan="4"></td></tr>
-			    	<tr><td colspan="4"></td></tr>
-			    	<tr>
-		            <th colspan="4" th:text="#{user.ui.general.purpose.outputs}" ></th>
-		        </tr>
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'UP_LED_0'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${up_led_0_EntryTypes}">
-			    	       <input type="radio" th:field="*{upLed_0}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('upLed_0')}" th:text="#{error.vsocUI.upLed_0}" th:class="'error'">UP_LED_0 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{upLed_0}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('upLed_0')}" th:text="#{error.vsocUI.upLed_0}" th:class="'error'">UP_LED_0 Error</label>
-			    	    </td>
-		        </tr>
-		        
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'UP_LED_1'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${up_led_1_EntryTypes}">
-			    	       <input type="radio" th:field="*{upLed_1}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('upLed_1')}" th:text="#{error.vsocUI.upLed_1}" th:class="'error'">UP_LED_1 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{upLed_1}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('upLed_1')}" th:text="#{error.vsocUI.upLed_1}" th:class="'error'">UP_LED_1 Error</label>
-			    	    </td>
-		        </tr>
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'UP_LED_2'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${up_led_2_EntryTypes}">
-			    	       <input type="radio" th:field="*{upLed_2}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('upLed_2')}" th:text="#{error.vsocUI.upLed_2}" th:class="'error'">UP_LED_2 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{upLed_2}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('upLed_2')}" th:text="#{error.vsocUI.upLed_2}" th:class="'error'">UP_LED_2 Error</label>
-			    	    </td>
-		        </tr>
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'UP_LED_3'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${up_led_3_EntryTypes}">
-			    	       <input type="radio" th:field="*{upLed_3}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('upLed_3')}" th:text="#{error.vsocUI.upLed_3}" th:class="'error'">UP_LED_3 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{upLed_3}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('upLed_3')}" th:text="#{error.vsocUI.upLed_3}" th:class="'error'">UP_LED_3 Error</label>
-			    	    </td>
-		        </tr>
-		        
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'EXP_LED_0'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${exp_led_0_EntryTypes}">
-			    	       <input type="radio" th:field="*{expLed_0}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('expLed_0')}" th:text="#{error.vsocUI.expInput_0}" th:class="'error'">EXP_LED_0 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{expLed_0}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('expLed_0')}" th:text="#{error.vsocUI.expLed_0}" th:class="'error'">EXP_LED_0 Error</label>
-			    	    </td>
-		        </tr>
-		        
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'EXP_LED_1'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${exp_led_1_EntryTypes}">
-			    	       <input type="radio" th:field="*{expLed_1}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('expLed_1')}" th:text="#{error.vsocUI.expLed_1}" th:class="'error'">EXP_LED_1 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{expLed_1}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('expLed_1')}" th:text="#{error.vsocUI.expLed_1}" th:class="'error'">EXP_LED_1 Error</label>
-			    	    </td>
-		        </tr>
-		        <tr>
-		        		<td/>
-					<td>
-		        			<label th:text="'EXP_LED_2'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${exp_led_2_EntryTypes}">
-			    	       <input type="radio" th:field="*{expLed_2}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('expLed_2')}" th:text="#{error.vsocUI.expLed_2}" th:class="'error'">EXP_LED_2 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{expLed_2}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('expLed_2')}" th:text="#{error.vsocUI.expLed_2}" th:class="'error'">EXP_LED_2 Error</label>
-			    	    </td>
-		        </tr>
-		        <tr>
-		        		<td/>
-		        		<td>
-		        			<label th:text="'EXP_LED_3'" draggable="false" ></label>
-		        		</td>
-		        		<td th:each="entryTypes1 : ${exp_led_3_EntryTypes}">
-			    	       <input type="radio" th:field="*{expLed_3}" th:value="${entryTypes1}" />ON
-			    	       <label th:if="${#fields.hasErrors('expLed_3')}" th:text="#{error.vsocUI.expLed_3}" th:class="'error'">EXP_LED_3 Error</label>
-			    	    </td>
-			    	      <td>
-			    	       <input type="radio" th:field="*{expLed_3}" th:value="${entryTypes2}" />OFF
-						<label th:if="${#fields.hasErrors('expLed_3')}" th:text="#{error.vsocUI.expLed_3}" th:class="'error'">EXP_LED_3 Error</label>
-			    	    </td>
-		        </tr>
-		        
-		        
 		    	</table>
 		    	<table>
  				    	<tr><td colspan="4"></td></tr>
