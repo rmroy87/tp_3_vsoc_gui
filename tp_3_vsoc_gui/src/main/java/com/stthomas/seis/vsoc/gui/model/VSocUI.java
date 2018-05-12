@@ -255,11 +255,16 @@ public class VSocUI implements VSocObserver {
 
 	@Override
 	public void update(Object o) {
-		this.clientMsg = (VSocClientMsg)o;
-		// Print the update changes	
-		System.out.println("*** update::State Change '" + this.clientMsg.toMsgString() + "'");
-		// Push to the Service Class and let it process the state change
-		this.vSocService.addOutputStateChanges(this.clientMsg);
+		if(o instanceof VSocClientMsg) {
+			this.clientMsg = (VSocClientMsg)o;
+			// Print the update changes	
+			System.out.println("*** update::State Change '" + this.clientMsg.toMsgString() + "'");
+			// Push to the Service Class and let it process the state change
+			this.vSocService.addOutputStateChanges(this.clientMsg);
+		}else {
+			// JUnit Test --> Print the update changes	
+			System.out.println("*** update::State Change '" + o.toString() + "'");
+		}
 	}
 	
 	public String getName() {
