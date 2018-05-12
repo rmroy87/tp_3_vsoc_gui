@@ -36,7 +36,7 @@ public class VSocServiceTest {
 		ui.setTempSensorInput("68");
 		List<VSocObserver> observers = service.registerNewState(ui);
 		assertTrue(((VSocUI)observers.get(0)).getTempSensorInput() != null 
-				&& "68".equalsIgnoreCase(((VSocUI)observers.get(0)).getTempSensorInput()));
+				&& "68".equalsIgnoreCase(((VSocUI)observers.get(0)).getTempSensorInput())); 
 	}
 	
 	@Test

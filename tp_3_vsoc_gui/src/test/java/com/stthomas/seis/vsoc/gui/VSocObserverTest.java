@@ -25,5 +25,5 @@ public class VSocObserverTest {
 		assertTrue(((VSocUI)observers.get(0)).getMcuHeartBeatLedInput() != null 
 				&& "OFF".equalsIgnoreCase(((VSocUI)observers.get(0)).getMcuHeartBeatLedInput()));
     }
-
+ 
 }

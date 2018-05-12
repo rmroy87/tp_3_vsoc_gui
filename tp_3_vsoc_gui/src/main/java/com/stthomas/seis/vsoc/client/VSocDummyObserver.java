@@ -1,14 +1,15 @@
 package com.stthomas.seis.vsoc.client;
 
+import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 
-public class VSocDummyObserver {
+public class VSocDummyObserver implements VSocObserver {
 
 	private VSocClientMsg clientMsg;
 	
 	public VSocDummyObserver() {
 		
 	}
-	public void update(VSocClientMsg msg) {
+	public void dummyupdate(VSocClientMsg msg) {
 		this.clientMsg = msg;
 		
 		System.out.print("VSocDummyObserver::update - ");
@@ -27,6 +28,12 @@ public class VSocDummyObserver {
 	}
 	public String msgToString() {
 		return this.clientMsg.toMsgString();
+	}
+	@Override
+	public void update(Object o) {
+		// TODO Auto-generated method stub
+		dummyupdate((VSocClientMsg)o);
+		
 	}
 
 }

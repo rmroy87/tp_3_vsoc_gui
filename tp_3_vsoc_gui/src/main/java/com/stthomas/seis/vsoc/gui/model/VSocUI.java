@@ -32,7 +32,7 @@ public class VSocUI implements VSocObserver {
 	private String expLed_2;
 	private String expLed_3;
 
-	private VSocService vSocService;
+	private VSocService vSocService = null;
 	
 	private VSocClientMsg clientMsg;
 	
@@ -259,7 +259,9 @@ public class VSocUI implements VSocObserver {
 		// Print the update changes	
 		System.out.println("*** update::State Change '" + this.clientMsg.toMsgString() + "'");
 		// Push to the Service Class and let it process the state change
-		this.vSocService.addOutputStateChanges(this.clientMsg);
+		if(this.vSocService != null) {
+			this.vSocService.addOutputStateChanges(this.clientMsg);
+		}
 	}
 	
 	public String getName() {
