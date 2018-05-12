@@ -32,7 +32,7 @@ public class VSocUI implements VSocObserver {
 	private String expLed_2;
 	private String expLed_3;
 
-	private VSocService vSocService;
+	private VSocService vSocService = null;
 	
 	private VSocClientMsg clientMsg;
 	

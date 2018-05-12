@@ -14,7 +14,7 @@ public class VSocClientLoopback extends VSocClientConnection {
 	private VSocClientMsg heartBeat;
 	private boolean heartBeatOff = true;
 	private boolean firstProcess = true;
-
+	
 	
 	public VSocClientLoopback(VSocUI theObserver) {
 		this.heartBeat = new VSocClientMsg("MCU_HEART_BEAT_LED", "INTEGER", "0");
