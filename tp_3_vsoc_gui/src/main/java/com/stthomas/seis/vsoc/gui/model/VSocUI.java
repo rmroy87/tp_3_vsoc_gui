@@ -268,11 +268,11 @@ public class VSocUI implements VSocObserver {
 		return this.clientMsg.getName();
 	}
 	
-	public String getType() {
-		return this.clientMsg.getType();
-	}
-	public String getValue() {
-		return this.clientMsg.getValue();
-	}
+//	public String getType() {
+//		return this.clientMsg.getType();
+//	}
+//	public String getValue() {
+//		return this.clientMsg.getValue();
+//	}
 
 }

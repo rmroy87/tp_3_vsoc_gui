@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 //import org.mockito.MockitoAnnotations;
 
+import com.stthomas.seis.vsoc.client.VSocClient;
 import com.stthomas.seis.vsoc.gui.model.VSocUI;
 import com.stthomas.seis.vsoc.gui.observer.VSocObserver;
 import com.stthomas.seis.vsoc.gui.service.VSocService;

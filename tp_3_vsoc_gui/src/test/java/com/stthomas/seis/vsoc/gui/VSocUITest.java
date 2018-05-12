@@ -210,4 +210,14 @@ public class VSocUITest
 		vsocui.setExpLed_3("on");
 		assertEquals("on", vsocui.getExpLed_3());
 	}
+	
+	@Test
+	public void test_toString()
+	{
+		vsocui = new VSocUI();
+		vsocui.setMcuHeartBeatLedInput("on");
+		vsocui.setExpLed_1("on");
+		vsocui.toString();
+	}
+	
 }
